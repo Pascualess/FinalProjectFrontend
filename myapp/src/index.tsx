@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use("/", exampleRoutes)
+app.use("/",)
 
 export const api = functions.https.onRequest(app)
 
