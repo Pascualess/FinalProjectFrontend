@@ -6,15 +6,18 @@ import AuthContextProvider from "./context/AuthContextProvider";
 import { Authentication } from "./components/Authentication";
 
 function App() {
+  console.log("Rendering App component...")
   return (
     <BrowserRouter>
       <div className="App">
+        <AuthContextProvider>
         <Routes>
-          <AuthContextProvider>
+          
             <Route path="/login" element={<Authentication />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
-          </AuthContextProvider>
+          
         </Routes>
+        </AuthContextProvider>
       </div>
     </BrowserRouter>
   );
