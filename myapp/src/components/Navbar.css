@@ -12,11 +12,11 @@
     left: 50%;
     transform: translate(-50%);
     z-index: 9999;
-    background-color: rgb(196, 141, 130);
+    background-color: #fff;
 }
 
 .navbar-logo {
-    color: purple;
+    color: #535e75;
     font-size: 2rem;
     cursor: pointer;
 }
@@ -31,7 +31,7 @@
 
 .nav-links {
     text-decoration: none;
-    color: purple;
+    color: #535e75;
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.7rem 1rem;
@@ -43,8 +43,8 @@
 }
 
 .nav-links:hover {
-    background-color: wheat;
-    color: purple;
+    background-color: #f1ddbf;
+    color: #222;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
 }
@@ -62,15 +62,15 @@ button {
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    background-color: rgb(196, 141, 130);
-    color: purple;
+    background-color: #535e75;
+    color: #fff;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
 button:hover {
-    background-color: wheat;
-    color: purple;
+    background-color: #f1ddbf;
+    color: #535e75;
 }
 
 .menu-icons {
@@ -82,7 +82,7 @@ button:hover {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-       background-color: rgb(196, 141, 130);
+       background-color: #fff;
        width: 100%;
        height: auto;
        position: absolute;
@@ -112,7 +112,7 @@ button:hover {
     }
 
     .nav-links:hover {
-        background-color: wheat;
+        background-color: #f1ddbf;
         transition: none;
     }
 
@@ -127,16 +127,16 @@ button:hover {
         margin: auto;
         border-radius: 4px;
         width: 100%;
-        background-color: rgb(196, 141, 130);
-        color: purple;
+        background-color: #fff;
+        color: #535e75;
         font-size: 1.2rem;
         font-weight: 700;
         letter-spacing: 2px;
         text-decoration: none;
     }
     .nav-links-mobile:hover {
-        background-color: wheat;
-        color: purple;
+        background-color: #f1ddbf;
+        color: #535e75;
     }
 
     .NavbarItems {
@@ -149,6 +149,6 @@ button:hover {
 
     .menu-icons i {
         font-size: 1.2rem;
-        color: purple;
+        color: #535e75;
     }
 }
