@@ -1,0 +1,17 @@
+import './Hero.css';
+
+function Hero () {
+    return (<>       
+        <div className="hero">
+            <img alt="heroImg" src="roadimg.png" />
+
+        <div className="hero-text">
+        <h1>Hi ____, let's plan your trip!</h1>
+        <h2>We can help you find exciting things to do at your destination.</h2>
+        </div>
+        </div>
+    </>
+    )
+}
+
+export default Hero;
