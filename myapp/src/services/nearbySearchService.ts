@@ -13,7 +13,7 @@ export function getNearbySearch(
 ): Promise<NearbySearch> {
   return axios
     .get<NearbySearch>(
-      "https://maps.googleapis.com/maps/api/place/nearbysearch",
+      "https://maps.googleapis.com/maps/api/place/nearbysearch/output",
       { params: { lat, lng, radius, apiKey } }
     )
     .then((response) => response.data);

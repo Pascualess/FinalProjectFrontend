@@ -7,13 +7,15 @@ const apiKey = googconfig;
 let radius = 5000;
 
 export function getTextSearch(
-  lat: Number,
-  lng: Number,
+  query: String,
   radius: Number
 ): Promise<TextSearch> {
   return axios
-    .get<TextSearch>("https://maps.googleapis.com/maps/api/place/textsearch", {
-      params: { lat, lng, radius, apiKey },
-    })
+    .get<TextSearch>(
+      "https://maps.googleapis.com/maps/api/place/textsearch/output",
+      {
+        params: { query, radius, apiKey },
+      }
+    )
     .then((response) => response.data);
 }
