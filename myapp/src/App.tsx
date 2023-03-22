@@ -4,7 +4,6 @@ import "./App.css";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContextProvider";
 import { Authentication } from "./components/Authentication";
-
 import { SearchForm } from "./components/SearchForm";
 import { ProtectedRoutes } from "./config/ProtectedRoutes";
 
@@ -18,11 +17,11 @@ function App() {
           
             <Route path="/login" element={<Authentication />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
-            {/* <Route path="/home" element={<ProtectedRoutes> <SearchForm /> </ProtectedRoutes>} /> */}
+            <Route path="/home" element={<ProtectedRoutes> <SearchForm /> </ProtectedRoutes>} />
             
-            <ProtectedRoutes>
-              <Route path="/home" element={<SearchForm /> } />
-            </ProtectedRoutes>
+            {/* <ProtectedRoutes path="/">
+              <SearchForm />
+            </ProtectedRoutes> */}
         
         </Routes>
         </AuthContextProvider>
