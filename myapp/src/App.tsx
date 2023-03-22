@@ -3,9 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContextProvider";
-import { Authentication } from "./components/Authentication";
 import { SearchForm } from "./components/SearchForm";
 import { ProtectedRoutes } from "./config/ProtectedRoutes";
+import { Login } from "./components/Login";
 
 function App() {
   console.log("Rendering App component...")
@@ -15,7 +15,7 @@ function App() {
         <AuthContextProvider>
         <Routes>
           
-            <Route path="/login" element={<Authentication />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
             <Route path="/home" element={<ProtectedRoutes> <SearchForm /> </ProtectedRoutes>} />
             

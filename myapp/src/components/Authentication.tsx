@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext"
 
 export function Authentication(){ 
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate();
+     const navigate = useNavigate();
 
     const handleSignIn = async () => {
         await signInWithGoogle();
