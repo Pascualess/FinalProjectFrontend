@@ -12,7 +12,7 @@ export function getTextSearch(
   radius: Number
 ): Promise<PlaceDetails> {
   return axios
-    .get<PlaceDetails>("https://maps.googleapis.com/maps/api/place/details", {
+    .get<PlaceDetails>("https://maps.googleapis.commaps/api/place/details", {
       params: { lat, lng, radius, apiKey },
     })
     .then((response) => response.data);
