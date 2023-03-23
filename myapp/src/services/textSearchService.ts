@@ -1,10 +1,9 @@
 import { Router, Request, Response } from "express";
 import { TextSearch } from "../models/textSearch";
-import googconfig from "../config/config";
+import googconfig from "../config/gconfig";
 import axios from "axios";
 
-const apiKey = googconfig;
-let radius = 5000;
+const key = "AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c";
 
 export function getTextSearch(
   query: String,
@@ -12,9 +11,9 @@ export function getTextSearch(
 ): Promise<TextSearch> {
   return axios
     .get<TextSearch>(
-      "https://maps.googleapis.com/maps/api/place/textsearch/output",
+      "https://maps.googleapis.com/maps/api/place/textsearch/json",
       {
-        params: { query, radius, apiKey },
+        params: { query, radius, key },
       }
     )
     .then((response) => response.data);

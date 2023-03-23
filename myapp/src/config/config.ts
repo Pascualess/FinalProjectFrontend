@@ -10,6 +10,4 @@ const config = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-const googconfig = { googleApiKey: process.env.google_API_key };
-
 export default config;

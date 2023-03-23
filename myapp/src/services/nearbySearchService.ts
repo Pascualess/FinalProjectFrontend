@@ -3,7 +3,7 @@ import { Router, Request, Response } from "express";
 import googconfig from "../config/config";
 import { NearbySearch } from "../models/nearbySearch";
 
-const apiKey = googconfig;
+const key = googconfig;
 let radius = 5000;
 
 export function getNearbySearch(
@@ -13,8 +13,8 @@ export function getNearbySearch(
 ): Promise<NearbySearch> {
   return axios
     .get<NearbySearch>(
-      "https://maps.googleapis.com/maps/api/place/nearbysearch/output",
-      { params: { lat, lng, radius, apiKey } }
+      "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+      { params: { lat, lng, radius, key } }
     )
     .then((response) => response.data);
 }
