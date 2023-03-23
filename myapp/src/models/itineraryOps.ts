@@ -3,17 +3,19 @@ import {ObjectId} from "mongodb";
 
 export default interface optionDetails {
   _id?: ObjectId;
-  // Location
+  // Location FROM nearbySearch
   lat: number;
   lng: number;
-  // Result
+  // Result from nearbySearch
   name: string;
   formatted_address: string;
   rating: number;
   types: string[];
-    // CurrentOpeningHours
+  formatted_phone_number: string;
+    //OpeningHours Placedetail
   weekday_text: string[];
-  formatted_phone_number:         string;
+
+  
 }
 
 
