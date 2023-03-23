@@ -48,10 +48,12 @@ export function fetchitOpenHours(weekday_text: string): Promise<OpeningHours[]> 
 
 //Element of activity specifics include an image- need to get photo_reference 
 export function fetchimage(Photo: any): Promise<Photo() > {
-  return axios.get <Photo()>(`${baseUrl}/image`, {
+  return axios.get <Photo()>(`${baseUrl}`: {
     .then(res => res.data);
   })
-  // ? maxwidth = 1336 & photo_reference={
-  //   Photo.photo_reference: string
-  // }&key=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50
+  
+
 }
+
+// ? maxwidth = 1336 & photo_reference={
+  //   Photo.photo_reference: string
