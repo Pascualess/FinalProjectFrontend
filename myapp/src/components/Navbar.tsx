@@ -2,13 +2,14 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from 'reactstrap';
+import { Authentication } from './Authentication';
 import './Navbar.css';
 
 //this creates our MenuItems - map is used below
 export const MenuItems = [
   {
     title: "Home",
-    url: "/",
+    url: "/home",
     cName: "nav-links",
     icon: "fa-solid fa-house"
   },
@@ -26,7 +27,7 @@ export const MenuItems = [
   },
   {
     title: "Login In/Sign Up",
-    url: "/account",
+    url: "/login",
     cName: "nav-links-mobile",
   }
 ]
@@ -56,7 +57,7 @@ class Navbar extends Component {
                   <li key={index}><Link className={item.cName} to={item.url}><i className={item.icon}></i>{item.title}</Link></li>
                   );
                 })}
-                <button>Login In/Sign Up</button>
+                <Authentication />
               </ul>
             </Nav>
       </div>

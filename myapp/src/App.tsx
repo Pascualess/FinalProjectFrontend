@@ -4,6 +4,7 @@ import "./App.css";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContextProvider";
 import { Authentication } from "./components/Authentication";
+import PlaceSearch from "./components/testcomponent";
 
 function App() {
   console.log("Rendering App component...")
