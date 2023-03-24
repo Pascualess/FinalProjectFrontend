@@ -6,11 +6,12 @@ import Navbar from "./Navbar";
 import './SearchForm.css';
 
 // interface ISearchFormProps {
-//     EventList: Function;
+//     PlaceList: Function;
 // }
+
 export function SearchForm() {
     const [title, setTitle] = useState<string>('');
-    const [destination, setDestination] = useState<Result[]>([]);
+    const [destination, setDestination] = useState<string>('');
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
     const [selectedOption, setSelectedOption] = useState<string>('');
@@ -36,11 +37,11 @@ export function SearchForm() {
                     onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 
-                {/* <label>
+                <label>
                      Destination:
                     <input type="text" id="destination"  placeholder="Enter a city and/or state." value={destination}
-                    onChange={(e) => setDestination(e.target.value.replace(/[^a-z]/gi, ''))} autoComplete="off" />
-                </label> */}
+                    onChange={(e) => setDestination(e.target.value.replace(/[^a-z]/gi, ''))} />
+                </label>
                   
                 <label>
                      Start Date:
