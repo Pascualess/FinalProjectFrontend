@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Authentication } from './Authentication';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import './Navbar.css';

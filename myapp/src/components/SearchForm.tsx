@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Result } from "../models/nearbySearch";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
@@ -8,41 +9,38 @@ import './SearchForm.css';
 //     EventList: Function;
 // }
 export function SearchForm() {
-    //const [events] = useState<AnEvent[]>([])
     const [title, setTitle] = useState<string>('');
-    const [destination, setDestination] = useState<string>('');
+    const [destination, setDestination] = useState<Result[]>([]);
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
-    const [keyword, setKeyword] = useState<string>('');
-    const [dropdownOpen, setOpen] = useState<boolean>(false);
+    const [selectedOption, setSelectedOption] = useState<string>('');
 
-    // const onSubmit = (event:any) => {
-    //     event.preventDefault();
-    //     console.log(startDate, endDate);
-    //     //GetAllEvents(keyword, postalCode, startDateTime, endDateTime).then((events) => {
-    //         //lifting up state
-    //         // props.EventList(events)
-    //         // console.log(events);
-    //     }
-    // }
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log('Title:', title);
+        console.log('Destination:', destination);
+        console.log('Start Date:', startDate);
+        console.log('End Date:', endDate);
+        console.log('Selected Option:', selectedOption);
+      }
 
     return (
         <div className="SearchForm">
             <Navbar />
             <Hero />
             <div className="form-container">
-                <form>
+                <form onSubmit={handleSubmit}>
                  <label>
                      Trip Title:    
                     <input type="text" name="title" placeholder="Give your trip a name." value={title}
                     onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 
-                <label>
+                {/* <label>
                      Destination:
-                    <input type="text" name="destination"  placeholder="What is your destination?" value={destination}
-                    onChange={(e) => setDestination(e.target.value.replace(/[^a-z]/gi, ''))} />
-                </label>
+                    <input type="text" id="destination"  placeholder="Enter a city and/or state." value={destination}
+                    onChange={(e) => setDestination(e.target.value.replace(/[^a-z]/gi, ''))} autoComplete="off" />
+                </label> */}
                   
                 <label>
                      Start Date:
@@ -57,7 +55,7 @@ export function SearchForm() {
                 </label>
                 
                 <label>Who is going? (This will tailor the activities):
-                    <select>
+                    <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
                         <option selected value="solo">Solo</option>
                         <option value="family">Family</option>
                         <option value="couples">Couples</option>
