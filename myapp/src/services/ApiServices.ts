@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TextSearch } from "../models/textSearch";
 
-const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api"
+const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/textSearch"
 
 export function fetchTextSearch(query:String, radius: Number):Promise<TextSearch> {
   return axios.get<TextSearch>(`${baseURL}`, {

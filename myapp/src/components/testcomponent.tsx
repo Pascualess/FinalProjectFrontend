@@ -13,6 +13,7 @@ function PlaceSearch() {
     try {
       const response: TextSearch = await fetchTextSearch(query, radius);
       setPlaces(response);
+      console.log(response)
     } catch (error) {
       console.error(error);
     }

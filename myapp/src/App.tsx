@@ -14,7 +14,7 @@ function App() {
         <AuthContextProvider>
         <Routes>
           
-            <Route path="/login" element={<PlaceSearch />} />
+            <Route path="/login" element={<Authentication />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
           
         </Routes>
