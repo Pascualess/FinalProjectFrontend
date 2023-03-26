@@ -7,6 +7,7 @@ import { SearchForm } from "./components/SearchForm";
 import { ProtectedRoutes } from "./config/ProtectedRoutes";
 import { Login } from "./components/Login";
 
+
 function App() {
   console.log("Rendering App component...")
   return (
