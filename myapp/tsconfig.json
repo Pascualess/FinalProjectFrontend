@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "../../FinalProjectBackend/models"  ]
+, "../../FinalProjectBackend/functions/src/models"  ]
 }
