@@ -6,7 +6,7 @@ function Hero () {
             <img alt="heroImg" src="roadimg.png" />
 
         <div className="hero-text">
-        <h1>Hi ____, let's plan your trip!</h1>
+        <h1>Let's plan your trip!</h1>
         <h2>We can help you find exciting things to do at your destination.</h2>
         </div>
         </div>

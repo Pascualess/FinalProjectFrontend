@@ -70,3 +70,10 @@ export interface PlusCode {
 export enum Scope {
     Google = "GOOGLE",
 }
+
+export interface PlaceAutocomplete {
+    predictions: string;
+    description: string;
+    place_id: string;
+    status: string;
+  }
