@@ -1,3 +1,7 @@
+
+
+
+
 export interface GooglePlacesPhotosAPIResponse {
     status: string;
     html_attributions: string[];

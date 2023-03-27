@@ -3,6 +3,7 @@ import { createContext } from 'react';
 import { PlaceContextModel } from '../models/PlaceContextModel';
 
 
+
 const defaultValue: PlaceContextModel = {
     selectedDestination: {
      business_status: undefined,
