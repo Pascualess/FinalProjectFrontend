@@ -6,7 +6,7 @@ export interface Itinerary {
     startDate?: string;
     endDate?: string;
     place?: Place[],
-    _id?: string;
+    _id?: ObjectId;
     lat: number;
     lng: number;
 }

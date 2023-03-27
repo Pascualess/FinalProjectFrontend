@@ -20,21 +20,10 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
     fetchPlaces();
   }, [selectedDestination]);
 
-  const handleAddToItinerary = async (place:Result) => {
-    const newItinerary: Itinerary = {
-      name: place.name,
-      lat: place.geometry.location.lat,
-      lng: place.geometry.location.lng
-    };
-    console.log(newItinerary);
 
-    try {
-      await axios.post("/itinerary", newItinerary);
-      alert("Added to itinerary!");
-      console.log("Added to itinerary");
-    } catch (error) {
-      alert("Error adding to itinerary.");
-    }
+  
+  const handleAddToItinerary = async (place:Result) => {
+    
   }
 
   return (
