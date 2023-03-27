@@ -1,57 +1,79 @@
-import {Location, Result}  from "../models/nearbySearch";
-import { OpeningHours } from "../models/placeDetails";
-import { Photo } from "../models/placePhotos";
-import { Type } from "../models/textSearch";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Itinerary, Place } from "../models/itinerary;
 
-const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api";
-//Unclear where to drop the apikey to test.
+ const API_URL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api";
 
-//search for options by location based on user input
-export function fetchItineraryOptions( city: string, stateCode: string) {
-  return (
-    axios.get<Result>(`{baseUrl}+"AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG5"`, {
-      params: {
-        City: city || "",
-        stateCode: stateCode || "",
-      },
-    })
-      .then((response) => response.data)
 
-      .catch((error) => {
-        alert("Invalid search term, please try again");
-        console.log(error);
-      })
-  );
+const MONGODB_URI = "mongodb+srv://Pascualess:R5Ohwr8XwYQl9cky@cluster0.dzoqfrq.mongodb.net/?retryWrites=true&w=majority";
 
+export const fetchItinerary = async (): Promise<Itinerary[]> => {
+    const response: AxiosResponse = await axios.get(`${API_URL}/itinerary`);
+    return response.data;
+};
+
+
+const placeOptions = new placeOptio(MONGODB_URI);
+
+async function connectToDatabase(): Promise<Place> {
+  await client.connect();
+
+  const db = client.db();
+
+  const collections: DatabaseCollections = {
+    itineraries: db.collection<Itinerary>('itineraries'),
+    places: db.collection<Place>('places'),
+  };
+
+  return { collections };
 }
 
-//get location details to save and display as part of trip
-export function fetchOptionSpecs():Promise<Result[]> {
-  return axios.get<Result[]>("https://us-central1-trippin-dc0bc.cloudfunctions.net/api=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50")
-  .then((res: { data: any; }) => res.data)
+export async function getItineraries(): Promise<Itinerary[]> {
+  const { collections } = await connectToDatabase();
+
+  const itineraries = await collections.itineraries.find().toArray();
+
+  return itineraries;
 }
 
-//Get specific location?? were going to use for 25 mile radius search for vacation options
-export function fetchlocation(location:Location):Promise<Location> {
-  return axios.post<Location>(`${baseUrl}/location`).then(res => res.data);
+export async function createItinerary(
+  itinerary: Omit<Itinerary, '_id'>
+): Promise<Itinerary> {
+  const { collections } = await connectToDatabase();
+
+  const result = await collections.itineraries.insertOne(itinerary);
+
+  const createdItinerary = result.ops[0];
+
+  return createdItinerary;
 }
 
+export async function updateItinerary(
+  id: string,
+  updates: Omit<Partial<Itinerary>, '_id'>
+): Promise<Itinerary | null> {
+  const { collections } = await connectToDatabase();
 
-//Part of activity specifics included open hours
-export function fetchitOpenHours(weekday_text: string): Promise<OpeningHours[]> {
-    return axios.get<OpeningHours[]>(`${baseUrl}/OpenHours`, {
-        params: {weekday_text}
-    })
-        .then(res => res.data)
+  const filter = { _id: new Object(id) };
+
+  const result = await collections.itineraries.findOneAndUpdate(filter, {
+    $set: updates,
+  });
+
+  const updatedItinerary = result.value;
+
+  return updatedItinerary;
 }
 
-//Element of activity specifics include an image- need to get photo_reference 
-export function fetchimage(Photo: any): Promise<Photo() > {
-  return axios.get <Photo()>(`${baseUrl}/image`, {
-    .then(res => res.data);
-  })
-  // ? maxwidth = 1336 & photo_reference={
-  //   Photo.photo_reference: string
-  // }&key=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50
+export async function deleteItinerary(id: string): Promise<void> {
+  const { collections } = await connectToDatabase();
+
+  const filter = { _id: new Object(id) };
+
+  await collections.itineraries.deleteOne(filter);
 }
+
+//   })
+//   // ? maxwidth = 1336 & photo_reference={
+//   //   photo_reference: string
+//   // }&key=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50
+// }

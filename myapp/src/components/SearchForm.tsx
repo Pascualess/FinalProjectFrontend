@@ -4,7 +4,9 @@ import { getNearbySearch } from "../services/nearbySearchService";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
-import './SearchForm.css';
+import './SearchForm.css'; 
+import React from 'react';
+
 
 interface ISearchFormProps {
     PlaceList: Function;
@@ -34,7 +36,7 @@ export function SearchForm(props: ISearchFormProps) {
         console.log('Start Date:', startDate);
         console.log('End Date:', endDate);
         console.log('Selected Option:', selectedOption);;
-        getNearbySearch((lat, lng, radius) => {
+        getNearbySearch((lat: any, lng: any, radius: any) => {
             //lifting up state
             props.PlaceList(lat, lng, radius)
             console.log(lat, lng, radius);

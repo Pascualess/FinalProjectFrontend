@@ -4,7 +4,7 @@ import { PlaceDetails } from "../models/placeDetails";
 import { TextSearch } from "../models/textSearch";
 
 const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/";
-
+//get by name options in area
 export function fetchTextSearch(
   query: String,
   radius: Number
@@ -15,6 +15,7 @@ export function fetchTextSearch(
     })
     .then((res) => res.data);
 }
+//finding options in the area
 export function fetchNearbySearch(
   lat: number,
   lng: number,
@@ -27,6 +28,7 @@ export function fetchNearbySearch(
     })
     .then((response) => response.data);
 }
+//get photo of option
 export function fetchPhoto(photo_reference: String): Promise<any> {
   return axios
     .get<any>(`${baseURL}`, {
@@ -34,6 +36,7 @@ export function fetchPhoto(photo_reference: String): Promise<any> {
     })
     .then((res) => res.data);
 }
+//gets all details of place
 export function fetchDetails(placeId: String): Promise<PlaceDetails> {
   return axios
     .get<PlaceDetails>(`${baseURL}`, {
