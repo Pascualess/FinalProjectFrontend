@@ -2,7 +2,11 @@ import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import PlaceContext from '../context/PlaceContext';
 import { fetchNearbySearch } from '../services/ApiServices';
-import { NearbySearch } from "../models/nearbySearch";
+
+import { NearbySearch, Result } from "../models/nearbySearch";
+import { Itinerary } from "../models/itinerary";
+import axios from 'axios';
+
 
 export interface ISelectedNearbyPlacesProps {}
 
@@ -12,13 +16,13 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
 
   useEffect(() => {
     async function fetchPlaces() {
-      const places = await fetchNearbySearch(selectedDestination.lat, selectedDestination.lng, 50000);
+      const places = await fetchNearbySearch(selectedDestination.geometry.location.lat, selectedDestination.geometry.location.lng, 50000);
       setNearbyPlaces(places);
     }
     fetchPlaces();
   }, [selectedDestination]);
-
-  function handleAddToItinerary() {
+  
+  const handleAddToItinerary = async (place:Result) => {
     
   }
 
@@ -33,7 +37,8 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
               )}
               <h1>{place.name}</h1>
               <h3>{place.rating}</h3>
-              <button onClick={() => handleAddToItinerary()}>Add to itinerary </button>
+
+              <button onClick={() => handleAddToItinerary(place)}>Add to itinerary </button>
             </div>
           ))}
         </div>

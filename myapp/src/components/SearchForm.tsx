@@ -8,9 +8,11 @@ import { TextSearch, Result, Location } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
 import { Link, useNavigate } from "react-router-dom";
 import  setDestination  from "../context/PlaceProvider";
+import { Itinerary } from "../models/itinerary";
+import { additinerary } from "../services/itineraryOpsService";
 
 interface ISearchFormProps {
-    setDestination: (place: Location) => void;
+    setDestination: (place: Result) => void;
 }
 
 export function SearchForm() {
@@ -31,8 +33,23 @@ export function SearchForm() {
         setResults(results)  
 }
 
-const handlePlaceSelection = (selectedPlace:Location) => {
+const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:string,title:string) => {
     setDestination(selectedPlace)
+
+    const newItinerary: Itinerary = {
+        tripTitle: title,
+        name: selectedPlace.name,
+        lat: selectedPlace.geometry.location.lat,
+        lng: selectedPlace.geometry.location.lng,
+        _id: undefined,
+        place: [],
+        startDate: startDate,
+        endDate: endDate,
+        
+      };
+
+      additinerary(newItinerary);
+    
     navigate('/nearby', { state: {place: selectedPlace } });
 }
 
@@ -89,7 +106,7 @@ const handlePlaceSelection = (selectedPlace:Location) => {
                     <p>{place.formatted_address}</p>
                     {/* added this for extra detail on places, 
               so we don't think it's showing the same place twice, but rather different locations with same name */}
-                    <button onClick={() => handlePlaceSelection(place.geometry.location)}>{place.name}</button>
+                    <button onClick={() => handlePlaceSelection(place, startDate, endDate, title)}>{place.name}</button>
                   </div>
                 ))}
             <Footer />
