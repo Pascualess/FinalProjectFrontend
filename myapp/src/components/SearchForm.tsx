@@ -7,12 +7,10 @@ import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result, Location } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
 import { Link, useNavigate } from "react-router-dom";
-import  setDestination  from "../context/PlaceProvider";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 
 interface ISearchFormProps {
-    setDestination: (place: Result) => void;
 }
 
 export function SearchForm() {
