@@ -1,7 +1,8 @@
-import { User } from "firebase/auth";
-import { ReactNode, useEffect, useState } from "react";
-import { auth } from "./config/firebase";
-import AuthContext from "./AuthContext";
+import { User } from 'firebase/auth';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { auth } from './config/firebase'
+import AuthContext from './AuthContext';
+
 
 function AuthContextProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);

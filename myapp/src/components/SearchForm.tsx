@@ -1,45 +1,40 @@
-import { useState } from "react";
-import { Result } from "../models/nearbySearch";
-import { getNearbySearch } from "../services/nearbySearchService";
+import React, { useContext, useState } from "react";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import './SearchForm.css';
+import { fetchTextSearch } from "../services/ApiServices";
+import { TextSearch, Result, Location } from "../models/textSearch";
+import PlaceContext from "../context/PlaceContext";
+import { Link, useNavigate } from "react-router-dom";
+import  setDestination  from "../context/PlaceProvider";
 
 interface ISearchFormProps {
-    PlaceList: Function;
+    setDestination: (place: Location) => void;
 }
 
-export function SearchForm(props: ISearchFormProps) {
-    const [places] = useState<Result[]>([]);
+export function SearchForm() {
+    const [results, setResults] = useState<TextSearch>();
     const [title, setTitle] = useState<string>('');
-    const [destination, setDestination] = useState<string>('');
+    const [tripDestination, setTripDestination] = useState<string>('');
+    const [radius, setRadius] = useState<number>(50000);
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
-    const [selectedOption, setSelectedOption] = useState<string>('');
+    const [selectedCompany, setSelectedCompany] = useState<string>('solo')
 
-    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    //     console.log('Title:', title);
-    //     console.log('Destination:', destination);
-    //     console.log('Start Date:', startDate);
-    //     console.log('End Date:', endDate);
-    //     console.log('Selected Option:', selectedOption);
-    //   }
+    const { setDestination } = useContext(PlaceContext);
+    const navigate = useNavigate();
 
-      const onSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+      const onSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Title:', title);
-        console.log('Destination:', destination);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        console.log('Selected Option:', selectedOption);;
-        getNearbySearch((lat, lng, radius) => {
-            //lifting up state
-            props.PlaceList(lat, lng, radius)
-            console.log(lat, lng, radius);
-        })
-    }
+        const results = await fetchTextSearch(tripDestination, radius)
+        setResults(results)  
+}
+
+const handlePlaceSelection = (selectedPlace:Location) => {
+    setDestination(selectedPlace)
+    navigate('/nearby', { state: {place: selectedPlace } });
+}
 
     return (
         <div className="SearchForm">
@@ -55,8 +50,14 @@ export function SearchForm(props: ISearchFormProps) {
                 
                 <label>
                      Destination:
-                    <input type="text" id="destination"  placeholder="Enter a city and/or state." value={destination}
-                    onChange={(e) => setDestination(e.target.value.replace(/[^a-z]/gi, ''))} />
+                    <input type="text" id="tripDestination"  placeholder="Enter a city and/or state." value={tripDestination}
+                    onChange={(e) => setTripDestination(e.target.value.replace(/[^a-z]/gi, ''))} />
+                </label>
+
+                <label>
+                     Radius:
+                    <input type="number" name="radius" value={radius}
+                    onChange={(e) => setRadius(Number(e.target.value))} />
                 </label>
                   
                 <label>
@@ -72,8 +73,8 @@ export function SearchForm(props: ISearchFormProps) {
                 </label>
                 
                 <label>Who is going? (This will tailor the activities):
-                    <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-                        <option selected value="solo">Solo</option>
+                    <select value={selectedCompany} onChange={(e) => setSelectedCompany(e.target.value)}>
+                        <option value="solo">Solo</option>
                         <option value="family">Family</option>
                         <option value="couples">Couples</option>
                         <option value="friends">Friends</option>
@@ -83,11 +84,13 @@ export function SearchForm(props: ISearchFormProps) {
                 </form>  
             </div>
 
-            {places.map((place:any) => (
-                    /* @ts-ignore */
-                    <div key = {place.place_id}>
-                        {place.name}
-                    </div>
+            {results?.results.map((place) => (
+                    <div key={place.place_id}>
+                    <p>{place.formatted_address}</p>
+                    {/* added this for extra detail on places, 
+              so we don't think it's showing the same place twice, but rather different locations with same name */}
+                    <button onClick={() => handlePlaceSelection(place.geometry.location)}>{place.name}</button>
+                  </div>
                 ))}
             <Footer />
         </div>

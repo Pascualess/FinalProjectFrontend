@@ -1,57 +1,21 @@
-import {Location, Result}  from "../models/nearbySearch";
-import { OpeningHours } from "../models/placeDetails";
-import { Photo } from "../models/placePhotos";
-import { Type } from "../models/textSearch";
+import { Itinerary } from "../models/itineraryOps";
 import axios from "axios";
 
-const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api";
-//Unclear where to drop the apikey to test.
-
-//search for options by location based on user input
-export function fetchItineraryOptions( city: string, stateCode: string) {
-  return (
-    axios.get<Result>(`{baseUrl}+"AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG5"`, {
-      params: {
-        City: city || "",
-        stateCode: stateCode || "",
-      },
-    })
-      .then((response) => response.data)
-
-      .catch((error) => {
-        alert("Invalid search term, please try again");
-        console.log(error);
-      })
-  );
-
+const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/";
+ 
+ 
+export function fetchitinerary():Promise<Itinerary[]> {
+  return axios.get<Itinerary[]>(`${baseUrl}/itinerary`)
+  .then(res => res.data)
 }
 
-//get location details to save and display as part of trip
-export function fetchOptionSpecs():Promise<Result[]> {
-  return axios.get<Result[]>("https://us-central1-trippin-dc0bc.cloudfunctions.net/api=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50")
-  .then((res: { data: any; }) => res.data)
+export function additinerary(itinerary:Itinerary):Promise<Itinerary> {
+  return axios.post<Itinerary>(`${baseUrl}/itinerary`, itinerary).then(res => res.data);
 }
 
-//Get specific location?? were going to use for 25 mile radius search for vacation options
-export function fetchlocation(location:Location):Promise<Location> {
-  return axios.post<Location>(`${baseUrl}/location`).then(res => res.data);
-}
-
-
-//Part of activity specifics included open hours
-export function fetchitOpenHours(weekday_text: string): Promise<OpeningHours[]> {
-    return axios.get<OpeningHours[]>(`${baseUrl}/OpenHours`, {
-        params: {weekday_text}
-    })
-        .then(res => res.data)
-}
-
-//Element of activity specifics include an image- need to get photo_reference 
-export function fetchimage(Photo: any): Promise<Photo() > {
-  return axios.get <Photo()>(`${baseUrl}/image`, {
-    .then(res => res.data);
+export function fetchitineraries(user: string):Promise<Itinerary[]> {
+  return axios.get<Itinerary[]>(`${baseUrl}/itinerary`, {
+    params: { to: user }
   })
-  // ? maxwidth = 1336 & photo_reference={
-  //   Photo.photo_reference: string
-  // }&key=AIzaSyCtZRcyHTGawuW5LPfPKt1TExEfgtPGG50
+  .then(res => res.data)
 }
