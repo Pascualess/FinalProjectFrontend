@@ -1,3 +1,4 @@
+
 import { Result } from "../models/textSearch";
 
 export interface PlaceContextModel {
