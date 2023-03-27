@@ -6,6 +6,8 @@ import { fetchNearbySearch } from '../services/ApiServices';
 import { NearbySearch, Result } from "../models/nearbySearch";
 import { Itinerary } from "../models/itinerary";
 import axios from 'axios';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 
 export interface ISelectedNearbyPlacesProps {}
@@ -28,7 +30,9 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
 
   return (
     <div className="selectedNearbyPlaces">
-      <h1>Nearby Places</h1>
+      <Navbar /> 
+      <div style={{ marginTop:"5vh"}}>
+        <h1>Nearby Places</h1>
       {nearbyPlaces && nearbyPlaces.results.map((place) => (
             <div key={place.place_id}>
               {place.photos && place.photos.length > 0 && (
@@ -40,7 +44,9 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
 
               <button onClick={() => handleAddToItinerary(place)}>Add to itinerary </button>
             </div>
-          ))}
+          ))} 
+      </div>
+     <Footer />
         </div>
   );
 }
