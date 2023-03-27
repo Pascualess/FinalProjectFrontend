@@ -26,6 +26,12 @@ export const MenuItems = [
     icon: "fa-solid fa-address-book"
   },
   {
+    title: "My Itineraries",
+    url: "/itinerary",
+    cName: "nav-links",
+    icon: "fa-solid fa-clipboard-list"
+  },
+  {
     title: "Login In/Sign Up",
     url: "/login",
     cName: "nav-links-mobile",

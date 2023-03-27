@@ -14,7 +14,7 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
 
   useEffect(() => {
     async function fetchPlaces() {
-      const places = await fetchNearbySearch(selectedDestination.lat, selectedDestination.lng, 50000);
+      const places = await fetchNearbySearch(selectedDestination.geometry.location.lat, selectedDestination.geometry.location.lng, 50000);
       setNearbyPlaces(places);
     }
     fetchPlaces();
