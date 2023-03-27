@@ -6,7 +6,7 @@ import { SearchForm } from "./components/SearchForm";
 import { ProtectedRoutes } from "./config/ProtectedRoutes";
 import { Login } from "./components/Login";
 import PlaceProvider from "./context/PlaceProvider";
-import setDestination from "./context/PlaceProvider";
+import { SelectNearbyPlaces } from "./components/SelectNearbyPlaces";
 
 
 
@@ -21,7 +21,8 @@ function App() {
           
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
-            <Route path="/home" element={<ProtectedRoutes> <SearchForm setDestination={setDestination} /> </ProtectedRoutes>} />
+            <Route path="/home" element={<ProtectedRoutes> <SearchForm /> </ProtectedRoutes>} />
+            <Route path="/nearby" element={<ProtectedRoutes> <SelectNearbyPlaces /> </ProtectedRoutes>} />
         
         </Routes>
         </PlaceProvider>

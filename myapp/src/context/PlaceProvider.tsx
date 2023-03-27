@@ -5,7 +5,6 @@ import { PlaceContextModel } from '../models/PlaceContextModel';
 
 export interface IPlaceProviderProps {
   children: ReactNode;
-  location: Location
 }
 
 const PlaceProvider = ({ children }: IPlaceProviderProps) => {
@@ -19,9 +18,8 @@ const PlaceProvider = ({ children }: IPlaceProviderProps) => {
   };
 
   const contextValue: PlaceContextModel = {
-    lat: selectedDestination.lat,
-    lng: selectedDestination.lng,
-    setDestination,
+    selectedDestination,
+    setDestination
   };
 
   return (

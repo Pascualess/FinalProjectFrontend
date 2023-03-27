@@ -20,24 +20,17 @@ export function SearchForm() {
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
     const [selectedCompany, setSelectedCompany] = useState<string>('solo')
-    const [selectedOption, setSelectedOption] = useState<string>('');
-    const [selectedPlace, setSelectedPlace] = useState<Result>();
 
     const { setDestination } = useContext(PlaceContext);
 
       const onSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Title:', title);
-        console.log('Destination:', tripDestination);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        console.log('Selected Option:', selectedOption);
         const results = await fetchTextSearch(tripDestination, radius)
         setResults(results)  
 }
 
 const handlePlaceSelection = (selectedPlace:Location) => {
-    props.setDestination(selectedPlace)
+    setDestination(selectedPlace)
 };
 
     return (

@@ -1,7 +1,7 @@
 import { Location } from "../models/textSearch";
 
 export interface PlaceContextModel {
-    lat:Number,
-    lng:Number,
+    selectedDestination: Location
     setDestination: (place:Location) => void
+    
 }

@@ -1,10 +1,10 @@
 import { createContext } from 'react';
+
 import { PlaceContextModel } from '../models/PlaceContextModel';
 
 
 const defaultValue:PlaceContextModel = {
-lat: 0,
-lng: 0,
+selectedDestination: {lat:0, lng:0},
 setDestination: () => {}
 }
 
