@@ -1,7 +1,8 @@
-import { Location } from "../models/textSearch";
+
+import { Result } from "../models/textSearch";
 
 export interface PlaceContextModel {
-    selectedDestination: Location
-    setDestination: (place:Location) => void
+    selectedDestination: Result
+    setDestination: (place:Result) => void
     
 }

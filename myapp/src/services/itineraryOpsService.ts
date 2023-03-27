@@ -1,11 +1,10 @@
-import { Itinerary, Place } from "../models/itineraryOps";
+import { Itinerary } from "../models/itinerary";
 import axios from "axios";
-import { ObjectId } from "mongodb";
-import { resolve } from "path/posix";
 
 const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/";
  
- //retrieve  all saved itineraries
+ 
+//retrieve  all saved itineraries
 export function fetchitinerary():Promise<Itinerary[]> {
   return axios.get<Itinerary[]>(`${baseUrl}/itinerary`)
   .then(res => res.data)
@@ -36,4 +35,14 @@ export function deletePlace(itineraryId: string, placeId: string): Promise<Itine
   return axios
     .delete<Itinerary>(`${baseUrl}/itinerary/${itineraryId}/place/${placeId}`)
     .then((res) => res.data);
+
+export function additinerary(itinerary:Itinerary):Promise<Itinerary> {
+  return axios.post<Itinerary>(`${baseUrl}/itinerary`, itinerary).then(res => res.data);
+}
+
+export function fetchitineraries(user: string):Promise<Itinerary[]> {
+  return axios.get<Itinerary[]>(`${baseUrl}/itinerary`, {
+    params: { to: user }
+  })
+  .then(res => res.data)
 }
