@@ -9,7 +9,7 @@ import PlaceContext from "../context/PlaceContext";
 import { Link, useNavigate } from "react-router-dom";
 import  setDestination  from "../context/PlaceProvider";
 import { Itinerary } from "../models/itinerary";
-import { additinerary } from "../services/itineraryOpsService";
+import { addItinerary } from "../services/itineraryOpsService";
 
 interface ISearchFormProps {
     setDestination: (place: Result) => void;
@@ -48,7 +48,7 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
         
       };
 
-      additinerary(newItinerary);
+      addItinerary(newItinerary);
     
     navigate('/nearby', { state: {place: selectedPlace } });
 }
