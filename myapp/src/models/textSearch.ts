@@ -75,3 +75,4 @@ export enum Type {
     Restaurant = "restaurant",
     Store = "store",
 }
+
