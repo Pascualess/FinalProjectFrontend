@@ -6,7 +6,8 @@ import './SearchForm.css';
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result, Location } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
-// import  setDestination  from "../context/PlaceProvider";
+import { Link, useNavigate } from "react-router-dom";
+import  setDestination  from "../context/PlaceProvider";
 
 interface ISearchFormProps {
     setDestination: (place: Location) => void;
@@ -22,6 +23,7 @@ export function SearchForm() {
     const [selectedCompany, setSelectedCompany] = useState<string>('solo')
 
     const { setDestination } = useContext(PlaceContext);
+    const navigate = useNavigate();
 
       const onSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,7 +33,8 @@ export function SearchForm() {
 
 const handlePlaceSelection = (selectedPlace:Location) => {
     setDestination(selectedPlace)
-};
+    navigate('/nearby', { state: {place: selectedPlace } });
+}
 
     return (
         <div className="SearchForm">
@@ -71,7 +74,7 @@ const handlePlaceSelection = (selectedPlace:Location) => {
                 
                 <label>Who is going? (This will tailor the activities):
                     <select value={selectedCompany} onChange={(e) => setSelectedCompany(e.target.value)}>
-                        <option selected value="solo">Solo</option>
+                        <option value="solo">Solo</option>
                         <option value="family">Family</option>
                         <option value="couples">Couples</option>
                         <option value="friends">Friends</option>
@@ -83,8 +86,10 @@ const handlePlaceSelection = (selectedPlace:Location) => {
 
             {results?.results.map((place) => (
                     <div key={place.place_id}>
+                    <p>{place.formatted_address}</p>
+                    {/* added this for extra detail on places, 
+              so we don't think it's showing the same place twice, but rather different locations with same name */}
                     <button onClick={() => handlePlaceSelection(place.geometry.location)}>{place.name}</button>
-                    
                   </div>
                 ))}
             <Footer />

@@ -16,26 +16,26 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
       setNearbyPlaces(places);
     }
     fetchPlaces();
-  }, []);
-  function handleAddToItinerary() {
+  }, [selectedDestination]);
 
+  function handleAddToItinerary() {
+    
   }
 
   return (
     <div className="selectedNearbyPlaces">
-      {nearbyPlaces && (
-        <div>
-          {nearbyPlaces.results.map((place) => (
+      <h1>Nearby Places</h1>
+      {nearbyPlaces && nearbyPlaces.results.map((place) => (
             <div key={place.place_id}>
-              <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`} alt="" />
-              <p>{place.name}</p>
-              <p>{place.rating}</p>
-              <p>{place.rating}</p>
+              {place.photos && place.photos.length > 0 && (
+                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`} alt=""
+                style={{height: "500px", width: "500px"}} />
+              )}
+              <h1>{place.name}</h1>
+              <h3>{place.rating}</h3>
               <button onClick={() => handleAddToItinerary()}>Add to itinerary </button>
             </div>
           ))}
         </div>
-      )}
-    </div>
   );
 }
