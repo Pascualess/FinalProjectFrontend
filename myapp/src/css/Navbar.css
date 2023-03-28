@@ -11,12 +11,15 @@
     top: 20px;
     left: 50%;
     transform: translate(-50%);
+    /* z-index only works on positioned elements
+    higher index will be placed on top of elements with lower index*/
     z-index: 9999;
     background-color: #fff;
 }
 
 .navbar-logo {
     color: #535e75;
+    /*using rem because px is not responsive*/
     font-size: 2rem;
     cursor: pointer;
 }
@@ -24,6 +27,7 @@
 .nav-menu {
     display: grid;
     grid-template-columns: repeat(6, auto);
+    /*grip gap creates a gap between the columns of the grid*/
     grid-gap: 10px;
     list-style: none;
     align-items: center;
@@ -35,6 +39,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.7rem 1rem;
+    /*nowrap for white space makes sure that the white space in navbar does not wrap, stays in line */
     white-space: nowrap;
 }
 
@@ -47,6 +52,8 @@
     color: #222;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
+    /*transition is how fast the element changes when we hover over it
+    ease-in-out: specifies a transition effect with a slow start and end*/
 }
 
 .nav-links-mobile {

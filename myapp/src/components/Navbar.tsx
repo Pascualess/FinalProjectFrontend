@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from 'reactstrap';
 import { Authentication } from './Authentication';
-import './Navbar.css';
+import '../css/Navbar.css';
 
 //this creates our MenuItems - map is used below
 export const MenuItems = [

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
-import './SearchForm.css';
+import '../css/SearchForm.css';
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result, Location } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
