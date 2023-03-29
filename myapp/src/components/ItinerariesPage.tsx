@@ -1,31 +1,21 @@
 import * as React from 'react';
 import Navbar from './Navbar';
 import { Itinerary } from "../models/itinerary";
+import Footer from './Footer';
+import { useState } from 'react';
 
-export interface ItinerariesPageProps {
+export interface IItinerariesPageProps {
+  itinerary: Itinerary;
 }
 
-export const itineraryState = {
-  itineraries: [] as Itinerary[],
-  setItineraries: (itineraries: Itinerary[]) => {}
-};
-export function ItinerariesPage (props: ItinerariesPageProps) {
-  const {itineraries} = itineraryState;
-  
-  
+export function ItinerariesPage(props: IItinerariesPageProps) {
   return (
-    <div className="My-Itineraries">
-      <Navbar />
-      <h1>My Itineraries</h1>
+    <div className="itinerary">
+      <h2>Itinerary</h2>
       <ul>
-        {itineraries.map(itinerary => (
-          <li>
-            <h2>{itinerary.tripTitle}</h2>
-            <p>{itinerary.startDate} - {itinerary.endDate}</p>
-            <p>{itinerary.name}</p>
-            <p>Latitude: {itinerary.lat}, Longitude: {itinerary.lng}</p>
-          </li>
-        ))}
+        {/* {props.itinerary.place.map((place, index) => (
+          <li key={index}>{place.name}</li>
+        ))} */}
       </ul>
     </div>
   );

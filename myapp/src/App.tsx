@@ -22,8 +22,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Navigate to={"/login"} />} />
             <Route path="/home" element={<ProtectedRoutes> <SearchForm /> </ProtectedRoutes>} />
-            <Route path="/nearby" element={<ProtectedRoutes> <SelectNearbyPlaces addItinerary={addItinerary}/> </ProtectedRoutes>} />
-            <Route path="/itinerary" element={<ProtectedRoutes> <ItinerariesPage /> </ProtectedRoutes>} />
+            <Route path="/nearby" element={<ProtectedRoutes> <SelectNearbyPlaces addItinerary={addItinerary}  /> </ProtectedRoutes>} />
+            {/* <Route path="/itinerary" element={<ProtectedRoutes> <ItinerariesPage /> </ProtectedRoutes>} /> */}
         
         </Routes>
         </PlaceProvider>

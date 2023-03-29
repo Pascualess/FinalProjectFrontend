@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
-import '../css/SearchForm.css';
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result, Location } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
+import '../css/SearchForm.css'
 
 interface ISearchFormProps {
 }
