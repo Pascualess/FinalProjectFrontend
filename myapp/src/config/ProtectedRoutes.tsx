@@ -4,8 +4,8 @@ import { Authentication } from '../components/Authentication';
 import AuthContext from '../context/AuthContext';
 
 
-//type Props takens in children from React. This will protect the children routes
-//this will check if the user is authentication before showing the protected components/contents
+//type Props takes in children from React. This will protect the children routes
+//this will check if the user is authenticated before showing the protected components/contents
 type Props = {
   children: React.ReactNode;
 }
@@ -15,7 +15,7 @@ export function ProtectedRoutes({ children }: Props): JSX.Element {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-//if the user is not authentication, they will be redirected/navigated back to login page/route
+//if the user is not authenticated, they will be redirected/navigated back to login page/route
 //it will return component Authentication to prompt them to log in.
   if (!user) {
     navigate('/login', { replace: true });
