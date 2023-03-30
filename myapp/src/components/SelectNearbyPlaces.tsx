@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { ItinerariesPage } from './ItinerariesPage';
 import axios from 'axios';
+import googleConfig from '../config/gconfig';
 
 
 export interface ISelectedNearbyPlacesProps {
@@ -66,7 +67,7 @@ export function SelectNearbyPlaces (props: ISelectedNearbyPlacesProps) {
           {nearbyPlaces?.results?.map((place) => (
             <div key={place.place_id}>
               {place.photos && place.photos.length > 0 && (
-                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=YOUR_API_KEY`} alt=""
+                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=${googleConfig}`} alt=""
                 style={{height: "500px", width: "500px"}} />
               )}
               <h1>{place.name}</h1>

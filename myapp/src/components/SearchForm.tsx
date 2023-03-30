@@ -39,7 +39,6 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
         name: selectedPlace.name,
         lat: selectedPlace.geometry.location.lat,
         lng: selectedPlace.geometry.location.lng,
-        _id: undefined,
         place: [],
         startDate: startDate,
         endDate: endDate,
