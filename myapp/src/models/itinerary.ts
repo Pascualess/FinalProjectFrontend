@@ -9,6 +9,7 @@ export interface Itinerary {
     _id?: ObjectId;
     lat: number;
     lng: number;
+    //i don't think we need lat and lng in Itinerary - only in Place
 }
 
 export interface Place {

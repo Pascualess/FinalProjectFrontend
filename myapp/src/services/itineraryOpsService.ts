@@ -2,7 +2,7 @@ import { Itinerary, Place } from "../models/itinerary";
 import axios from "axios";
 import { ObjectId } from "mongodb";
 
-const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/";
+const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api";
  
  
 //retrieve  all saved itineraries

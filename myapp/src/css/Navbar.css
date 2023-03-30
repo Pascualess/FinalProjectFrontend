@@ -1,0 +1,247 @@
+/* display menu items */
+    .nav-menu.active {
+        left: 0;
+        opacity: 1;
+        z-index: -1;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-links {
+        display: block;
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 2rem 0;
+    }
+
+    .nav-links:hover {
+        background-color: #f1ddbf;
+        transition: none;
+    }
+
+    .nav-links-mobile {
+        display: block;
+        text-align: center;
+        padding: 1.5rem;
+        margin: auto;
+        border-radius: 4px;
+        width: 100%;
+        background-color: #fff;
+        color: #535e75;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-decoration: none;
+    }
+    .nav-links-mobile:hover {
+        background-color: #f1ddbf;
+        color: #535e75;
+    }
+
+    .NavbarItems {
+        z-index: 99;
+    }
+    .menu-icons {
+        display: block;
+        cursor: pointer;
+    }
+
+    .menu-icons i {
+        font-size: 1.2rem;
+        color: #535e75;
+    }
+
+.NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .25);
+    width: 100%;
+    height: 80px;
+    border-radius: 13px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    /* z-index only works on positioned elements
+    higher index will be placed on top of elements with lower index*/
+    z-index: 9999;
+    background-color: #fff;
+    margin: auto;
+}
+
+.navbar-logo {
+    color: #535e75;
+    /*using rem because px is not responsive*/
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: none;
+    grid-template-columns: repeat(6, auto);
+    /*grip gap creates a gap between the columns of the grid*/
+    grid-gap: 10px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links {
+    text-decoration: none;
+    color: #535e75;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    /*nowrap for white space makes sure that the white space in navbar does not wrap, stays in line */
+    white-space: nowrap;
+}
+
+.nav-links i {
+    padding-right: 10px;
+}
+
+.nav-links:hover {
+    background-color: #f1ddbf;
+    color: #222;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    /*transition is how fast the element changes when we hover over it
+    ease-in-out: specifies a transition effect with a slow start and end*/
+}
+
+.nav-links-mobile {
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    margin: auto;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #fff;
+    color: #535e75;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.nav-links-mobile:hover {
+    background-color: #f1ddbf;
+    color: #535e75;
+}
+
+.menu-icons {
+    display: block;
+    cursor: pointer;
+}
+
+.menu-icons i {
+    font-size: 1.2rem;
+    color: #535e75;
+}
+
+/* Between 681px and 800px */
+@media screen and (681px <= width <= 800px){
+    .nav-menu {
+        display: grid;
+        flex-direction: row;
+        justify-content: flex-end;
+        background-color: transparent;
+        width: auto;
+        height: auto;
+        position: static;
+        opacity: 1;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .nav-links {
+        display: block;
+        font-size: 1.2rem;
+        padding: 0;
+    }
+
+    button {
+        display: block;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        border-radius: 0.3rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        background-color: #535e75;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .nav-links-mobile {
+        display: none;
+    }
+
+    .NavbarItems {
+        width: 95%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    
+    .menu-icons {
+        display: none;
+    }
+}
+
+/* Between 801px and 1100px */
+@media (801 <= width >= 1100px) {
+    .nav-menu {
+        display: grid;
+        flex-direction: row;
+        justify-content: flex-end;
+        background-color: transparent;
+        width: auto;
+        height: auto;
+        position: static;
+        opacity: 1;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .nav-links {
+        display: block;
+        font-size: 1.2rem;
+        padding: 0;
+    }
+
+    button {
+        display: block;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        border-radius: 0.3rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        background-color: #535e75;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .nav-links-mobile {
+        display: none;
+    }
+
+    .NavbarItems {
+        width: 95%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    
+    .menu-icons {
+        display: none;
+    }
+}

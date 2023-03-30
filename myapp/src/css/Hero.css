@@ -24,10 +24,30 @@ img {
     background-color: #fff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px black;
 }
 .hero-text h2 {
     font-size: 1.3rem;
-    
     color: #fff;
     padding:0.5rem 2rem 0;
+}
+
+/* Between 681px and 800px */
+@media screen and (681px <= width <= 800px) {
+    .hero-text h1 {
+        font-size: 3rem; 
+    }
+    .hero-text h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Between 801px and 1100px */
+@media (801 <= width >= 1100px) {
+    .hero-text h1 {
+        font-size: 4rem; 
+    }
+    .hero-text h2 {
+        font-size: 3rem;
+    }
 }

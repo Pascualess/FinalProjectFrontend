@@ -2,7 +2,9 @@ import axios from "axios";
 import { NearbySearch } from "../models/nearbySearch";
 
 
-const key = "AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c";
+const key = process.env.REACT_APP_API_KEY || ""
+
+const baseURL = process.env.REACT_APP_BASE_URL || ""
 
 export function getNearbySearch(
   lat: number,
@@ -12,7 +14,7 @@ export function getNearbySearch(
   const location = `${lat},${lng}`;
   return axios
     .get<NearbySearch>(
-      "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+      baseURL + "/nearby",
       { params: { location, radius, key } }
     )
     .then((response) => response.data);
