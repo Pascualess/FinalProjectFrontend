@@ -13,11 +13,11 @@ export interface ILoginProps {
 }
 
 export function Login (props: ILoginProps) {
-  useEffect(() => {
-    getNearbySearch(42.4985242, -83.457077, 1000).then((res) => {
-      console.log(res);
-    })
-  }, []); 
+  // useEffect(() => {
+  //   getNearbySearch(42.4985242, -83.457077, 1000).then((res) => {
+  //     console.log(res);
+  //   })
+  // }, []); 
 
   return (
     <div>

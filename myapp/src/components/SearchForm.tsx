@@ -13,6 +13,7 @@ import '../css/SearchForm.css'
 interface ISearchFormProps {
 }
 
+//created a bunch of state variables to store the users input from the search form
 export function SearchForm() {
     const [results, setResults] = useState<TextSearch>();
     const [title, setTitle] = useState<string>('');
@@ -22,15 +23,22 @@ export function SearchForm() {
     const [endDate, setEndDate] = useState<string>('');
     const [selectedCompany, setSelectedCompany] = useState<string>('solo')
 
+    //the useContext hook is accessing the setDestination function from PlaceContext
     const { setDestination } = useContext(PlaceContext);
     const navigate = useNavigate();
 
+    //onSubmit will be called when the user submits the search form
+    //it calls the fetchTextSearch function from ApiServices, which will take in the 
+    //destination input and grabs the location and radius and returns results
       const onSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const results = await fetchTextSearch(tripDestination, radius)
         setResults(results)  
 }
 
+//handles when user clicks on place in search results
+//sets the selected destination using setDestination function from PlaceContext
+//this will create a new itinerary object with selected place's details from user's input
 const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:string,title:string) => {
     setDestination(selectedPlace)
 
@@ -46,8 +54,10 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
         
       };
 
+      //this calls the addItinerary function from ItineraryOpsService with the new itinerary object
       addItinerary(newItinerary);
     
+      //once place is selected, it will navigate the user to the Nearby page (SelectNearbyPlaces component)
     navigate('/nearby', { state: {place: selectedPlace } });
 }
 

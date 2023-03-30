@@ -20,10 +20,10 @@ export function fetchNearbySearch(
   lng: number,
   radius: number
 ): Promise<NearbySearch> {
-  // const location = `${lat},${lng}`;
+  const location = `${lat},${lng}`;
   return axios
     .get<NearbySearch>(`${baseURL}`, {
-      params: { lat,lng, radius },
+      params: { location, radius },
     })
     .then((response) => response.data);
 }
