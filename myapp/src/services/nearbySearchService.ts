@@ -2,7 +2,7 @@ import axios from "axios";
 import { NearbySearch } from "../models/nearbySearch";
 
 
-const key = process.env.REACT_API_KEY || ""
+const key = process.env.REACT_APP_API_KEY || ""
 
 const baseURL = process.env.REACT_APP_BASE_URL || ""
 

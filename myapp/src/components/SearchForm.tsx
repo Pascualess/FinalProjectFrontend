@@ -114,7 +114,10 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
                     <p>{place.formatted_address}</p>
                     {/* added this for extra detail on places, 
               so we don't think it's showing the same place twice, but rather different locations with same name */}
-                    <button onClick={() => handlePlaceSelection(place, startDate, endDate, title)}>{place.name}</button>
+                    <div className="handle-button">
+                      <button onClick={() => handlePlaceSelection(place, startDate, endDate, title)}>{place.name}</button>  
+                        </div>
+                    
                   </div>
                 ))}
             <Footer />
