@@ -3,9 +3,9 @@ import Footer from "./Footer";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import { fetchTextSearch } from "../services/ApiServices";
-import { TextSearch, Result, Location } from "../models/textSearch";
+import { TextSearch, Result} from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 import '../css/SearchForm.css'
@@ -43,8 +43,9 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
     setDestination(selectedPlace)
 
     const newItinerary: Itinerary = {
-        tripTitle: title,
+        tripName: title,
         name: selectedPlace.name,
+        photo_reference: selectedPlace.photos[0].photo_reference,
         lat: selectedPlace.geometry.location.lat,
         lng: selectedPlace.geometry.location.lng,
         _id: undefined,
@@ -58,7 +59,7 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
       addItinerary(newItinerary);
     
       //once place is selected, it will navigate the user to the Nearby page (SelectNearbyPlaces component)
-    navigate('/nearby', { state: {place: selectedPlace } });
+    navigate('/nearby', { state: {place: selectedPlace } }); // Jakes NOTE: this state and place are probably not needed.<<<<<<<<<O
 }
 
     return (

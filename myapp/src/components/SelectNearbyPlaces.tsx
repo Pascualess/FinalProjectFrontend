@@ -7,8 +7,8 @@ import { NearbySearch, Result } from "../models/nearbySearch";
 import { Itinerary, Place } from "../models/itinerary";
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { ItinerariesPage } from './ItinerariesPage';
-import axios from 'axios';
+import { addToItinerary } from '../services/itineraryOpsService';
+
 
 export interface ISelectedNearbyPlacesProps {
   addItinerary: (itinerary: Itinerary) => Promise<Itinerary>;
@@ -32,32 +32,20 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
     fetchPlaces();
   }, [selectedDestination]);
 
-  function handleAddToItinerary(newItinerary: Itinerary, selectedPlace: Place) {
-    // addItinerary(newItinerary, selectedPlace);
-    setItineraries([...itineraries, newItinerary]);
-  }
-
-  function handleAddToItineraryOnClick(place: Result) {
+  function handleAddToItineraryOnClick(place: Result) { //Jakes Note: This needs to fetch data from the back end to add the place to the itinerary 
     const newPlace = {
-      name: place.name,
-      lat: place.geometry.location.lat,
-      lng: place.geometry.location.lng,
-      startDate: "",
-      endDate: "",
+      name:place.name,
+      id: place.place_id,
+      photo_reference: place.photos,
+      formatted_address:place.vicinity,
+      rating: place.rating,
+      types: place.types,
+      weekday_text: place.opening_hours,
+      _id: undefined,
+      lat:place.geometry.location.lat,
+      lng:place.geometry.location.lng
     };
-
-    // const newItinerary: Itinerary = {
-    //   tripTitle: "",
-    //   name: "",
-    //   place: [],
-    //   startDate: "",
-    //   endDate: "",
-    // };
-
-    // props.addItinerary(newItinerary).then((itinerary) => {
-    //   setSelectedItinerary(itinerary);
-    //   handleAddToItinerary(newItinerary);
-    // });
+    // addToItinerary(selectedDestination.place_id,newPlace) Jakes NOTES: the first param needs to work with the backend to id the itinerary so I can add the new place into the array
   }  
 
  return (
@@ -86,7 +74,6 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
           </div>
         ))}
       </div>
-      {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
     </div>
     <div className="Footer">
       <Footer />

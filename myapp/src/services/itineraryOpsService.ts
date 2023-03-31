@@ -6,7 +6,7 @@ const baseUrl = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api";
  
  
 //retrieve  all saved itineraries
-export function fetchItinerary():Promise<Itinerary[]> {
+export function fetchItineraries():Promise<Itinerary[]> {
   return axios.get<Itinerary[]>(`${baseUrl}/itinerary`)
   .then(res => res.data)
 }
@@ -22,7 +22,7 @@ export function deleteTrip(name: string):Promise<Itinerary[]> {
 //add place to trip
 export function addToItinerary(id: ObjectId, place: Place): Promise<Place[]> {
   return axios.put<Place[]>(`${baseUrl}/itinerary/${id}`, place)
-    .then(res => res.data);
+    .then(res => res.data); // Jakes NOTES: This needs to change because i needs the whole itinerary plus the place object to be pushed in the request body. Unless there is a better way to save places in itineraries
 }
 
 // Add a new place to a saved itinerary
@@ -37,8 +37,7 @@ export function deletePlace(itineraryId: string, placeId: string): Promise<Itine
     .delete<Itinerary>(`${baseUrl}/itinerary/${itineraryId}/place/${placeId}`)
     .then((res) => res.data)};
 
-export function fetchItineraries(user: string):Promise<Itinerary[]> {
-  return axios.get<Itinerary[]>(`${baseUrl}/itinerary`, {
-    params: { to: user }
+export function fetchItinerary(id: string):Promise<Itinerary> {
+  return axios.get<Itinerary>(`${baseUrl}/itinerary/${id}`, {
   })
   .then(res => res.data)}
