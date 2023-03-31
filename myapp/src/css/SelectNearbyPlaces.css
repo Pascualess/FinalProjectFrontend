@@ -2,8 +2,8 @@ body {
     background-color: #92ba92;
 }
 .selectedNearbyPlaces {
-    margin: 8rem 1rem;
-    padding: 2rem;
+    margin: 6rem 1rem;
+    padding: 1rem;
 }
 
 .additinerary-button {
@@ -33,25 +33,99 @@ body {
     border: 1px solid black;
     box-shadow: 5px 5px grey;
     border-radius: 5px;
-    display: flex;
     text-align: center;
-    flex-direction: column;
-    height: 500px;
-    width: 500px;
-    margin: 10px;
+    height: 250px;
+    width: 100%;
+    margin: 10px 0;
     padding: 10px;
-    flex-wrap: wrap;
 }
 
 .place-image {
-    height: 300px;
+    height: 150px;
     width: 100%;
     object-fit: cover;
   }
   
   .place-details {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .places-card {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  /* Between 681px and 850px */
+@media screen and (681px <= width <= 850px) {
+    .selectedNearbyPlaces {
+        margin: 5rem 2rem;
+        padding: 2rem;
+      }
+    
+      .additinerary-button {
+        font-size: 1.2rem;
+      }
+    
+      .places-container {
+        height: 450px;
+        width: 100%;
+        margin: 10px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+      }
+    
+      .place-image {
+        height: 200px;
+      }
+    
+      .places-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+}
+
+/* Between 851px and 1100px */
+@media screen and (851px <= width >= 1100px) {
+    .selectedNearbyPlaces {
+        margin: 6rem 4rem;
+        padding: 3rem;
+      }
+    
+      .additinerary-button {
+        font-size: 1.4rem;
+      }
+    
+      .places-container {
+        height: 500px;
+      }
+    
+      .place-image {
+        height: 250px;
+      }
+    
+      .places-card {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+}
+
+/* Over 1101px */
+
+@media screen and (width >= 1101px ) {
+    .selectedNearbyPlaces {
+        margin: 8rem 6rem;
+        padding: 4rem;
+      }
+    
+      .additinerary-button {
+        font-size: 1.6rem;
+      }
+    
+      .places-container {
+        height: 500px;
+      }
+    
+      .place-image {
+        height: 300px;
+      }
+}
