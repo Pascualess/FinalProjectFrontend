@@ -57,7 +57,7 @@ class Navbar extends Component {
                 <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
               </div>
               {/* menu items are hidden on mobile devices unless menu bar is clicked. */}
-              <ul className={this.state.clicked ? "nav-menu active" : "nav-menu "}>
+              <ul id="menu-button" className={this.state.clicked ? "nav-menu active" : "nav-menu "}>
                 {MenuItems.map((item, index) => {
                   return (
                   <li key={index}><Link className={item.cName} to={item.url}><i className={item.icon}></i>{item.title}</Link></li>

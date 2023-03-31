@@ -61,13 +61,13 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   }  
 
   return (
-    <div className="selectedNearbyPlaces">
+    <div>
       <Navbar />
-      <div>
+      <div className="selectedNearbyPlaces">
         <h1>Nearby Places</h1>
-        <div className="">
+        <div className="places-card">
           {nearbyPlaces?.results?.map((place) => (
-            <div key={place.place_id}>
+            <div className="places-container" key={place.place_id}>
               {place.photos && place.photos.length > 0 && (
                 <img
                   src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`}
@@ -75,10 +75,11 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
                   style={{ height: "500px", width: "500px" }}
                 />
               )}
-              <h1>{place.name}</h1>
-              <h3>{place.rating}</h3>
-              <button onClick={() => handleAddToItineraryOnClick(place)}>
-                Add to itinerary{" "}
+              <h2>{place.name}</h2>
+              <h2>Rating: {place.rating}</h2>
+              <h2>{place.types[0]}</h2>
+              <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
+                Add to Itinerary{" "}
               </button>
             </div>
           ))}

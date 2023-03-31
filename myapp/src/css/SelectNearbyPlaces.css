@@ -1,0 +1,40 @@
+body {
+    background-color: #92ba92;
+}
+.selectedNearbyPlaces {
+    margin: 8rem 1rem;
+    padding: 2rem;
+}
+
+.additinerary-button {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    background-color: #535e75;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-block;
+    justify-content: center;
+}
+
+.additinerary-button:hover {
+    background-color: #f1ddbf;
+    color: #535e75;
+}
+
+.places-container {
+    border: 1px solid black;
+    box-shadow: 5px 5px grey;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    margin: 1rem 1rem;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
