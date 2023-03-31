@@ -60,21 +60,22 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
     // });
   }  
 
-  return (
-    <div>
-      <Navbar />
-      <div className="selectedNearbyPlaces">
-        <h1>Nearby Places</h1>
-        <div className="places-card">
-          {nearbyPlaces?.results?.map((place) => (
-            <div className="places-container" key={place.place_id}>
-              {place.photos && place.photos.length > 0 && (
-                <img
-                  src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`}
-                  alt=""
-                  style={{ height: "500px", width: "500px" }}
-                />
-              )}
+ return (
+  <div>
+    <Navbar />
+    <div className="selectedNearbyPlaces">
+      <h1>Nearby Places</h1>
+      <div className="places-card">
+        {nearbyPlaces?.results?.map((place) => (
+          <div className="places-container" key={place.place_id}>
+            {place.photos && place.photos.length > 0 && (
+              <img
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`}
+                alt=""
+                className="place-image"
+              />
+            )}
+            <div className="place-details">
               <h2>{place.name}</h2>
               <h2>Rating: {place.rating}</h2>
               <h2>{place.types[0]}</h2>
@@ -82,11 +83,13 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
                 Add to Itinerary{" "}
               </button>
             </div>
-          ))}
-        </div>
-        {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
+          </div>
+        ))}
       </div>
-      <Footer />
+      {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
     </div>
-  );
+    <Footer />
+  </div>
+);
+
 }

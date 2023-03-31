@@ -32,9 +32,25 @@ body {
     border: 1px solid black;
     box-shadow: 5px 5px grey;
     border-radius: 5px;
-    display: inline-block;
+    display: flex;
     text-align: center;
-    margin: 1rem 1rem;
-    padding-bottom: 10px;
+    flex-direction: column;
+    height: 500px;
+    width: 500px;
+    margin: 10px;
+    padding: 10px;
     flex-wrap: wrap;
 }
+
+.place-image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .place-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
