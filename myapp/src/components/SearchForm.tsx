@@ -120,7 +120,9 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
                     
                   </div>
                 ))}
-            <Footer />
+            <div className="Footer">
+                <Footer />
+            </div>
         </div>
     )
 }

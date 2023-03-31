@@ -88,7 +88,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       </div>
       {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
     </div>
-    <Footer />
+    <div className="Footer">
+      <Footer />
+    </div>
   </div>
 );
 

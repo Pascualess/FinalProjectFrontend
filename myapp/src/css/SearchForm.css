@@ -98,6 +98,10 @@ label {
     color: #535e75;
 }
 
+Footer {
+  position: fixed;
+}
+
 /* Between 681px and 800px */
 @media screen and (681px <= width <= 800px) {
   .form-container {

@@ -23,7 +23,9 @@ export function Login (props: ILoginProps) {
     <div>
         <Navbar />
         <Hero />
-        <Footer />
+        <div className="Footer" style={{position:"fixed", height:"30%", bottom:"0", width:"100%"}}>
+            <Footer />
+        </div>
     </div>
   );
 }

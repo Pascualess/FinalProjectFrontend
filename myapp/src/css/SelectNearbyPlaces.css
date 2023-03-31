@@ -26,6 +26,7 @@ body {
 .additinerary-button:hover {
     background-color: #f1ddbf;
     color: #535e75;
+    transition: all 0.2s ease-in-out
 }
 
 .places-container {
