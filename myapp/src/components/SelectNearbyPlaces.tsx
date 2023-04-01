@@ -6,8 +6,10 @@ import "../css/SelectNearbyPlaces.css"
 import { NearbySearch, Result } from "../models/nearbySearch";
 import { Itinerary } from "../models/itinerary";
 import Footer from './Footer';
-import Navbar from './Navbar';
 
+import Navbar from './Navbar';
+import { addToItinerary } from '../services/itineraryOpsService';
+import { useLocation } from 'react-router-dom';
 
 export interface ISelectedNearbyPlacesProps {
   addItinerary: (itinerary: Itinerary) => Promise<Itinerary>;
@@ -17,6 +19,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const { selectedDestination } = useContext(PlaceContext);
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
   const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
+  const location = useLocation();
+  const selectedPlace = location.state.selectedPlace as Result
+
 
   useEffect(() => {
     async function fetchPlaces() {
@@ -26,27 +31,26 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
         50000
       );
       setNearbyPlaces(places);
+      console.log( selectedPlace);
     }
     fetchPlaces();
-  }, [selectedDestination]);
+  }, [selectedDestination,selectedPlace]);
 
   function handleAddToItineraryOnClick(place: Result) { //Jakes Note: This needs to fetch data from the back end to add the place to the itinerary 
-    const newPlace = {
+    const newPlace:Place = {
       name:place.name,
       id: place.place_id,
-      photo_reference: place.photos,
+      photo_reference: place.photos[0].photo_reference,
       formatted_address:place.vicinity,
       rating: place.rating,
       types: place.types,
-      weekday_text: place.opening_hours,
       _id: undefined,
       lat:place.geometry.location.lat,
       lng:place.geometry.location.lng
     };
-    // addToItinerary(selectedDestination.place_id,newPlace) Jakes NOTES: the first param needs to work with the backend to id the itinerary so I can add the new place into the array
-    setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
-    //this code is updating the addedtoItinerary variable. 
-    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
+
+    addToItinerary(selectedPlace.place_id,newPlace) 
+
   }  
 
  return (

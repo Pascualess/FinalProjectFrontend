@@ -48,6 +48,7 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
     </tr>
   </thead>
   <tbody>
+
       {itineraries.map((x, index) => (
         <tr key={index}>
           <td className="trip-title">{x.tripName}</td>
