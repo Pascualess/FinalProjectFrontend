@@ -29,15 +29,6 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
     <div className="My-Itineraries">
       {/* <Navbar /> */}
       <h1>My Itineraries</h1>
-
-      <button
-        onClick={() => {
-          test();
-        }}
-      >
-        Test
-      </button>
-
       {itineraries.map((x, index) => (
         <div key={index}>
           <h1 >{x.tripName}</h1>
