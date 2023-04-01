@@ -1,16 +1,14 @@
 import React, { useContext, useState } from "react";
 import Footer from "./Footer";
 import Hero from "./Hero";
+import Navbar from "./Navbar";
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
-
-import '../css/SearchForm.css'
-import Navbar from "./Navbar";
-
+import "../css/SearchForm.css";
 
 interface ISearchFormProps {}
 
@@ -121,26 +119,6 @@ export function SearchForm() {
             />
           </label>
 
-
-    return (
-        <div>
-           <Navbar />
-            <Hero /> 
-        <div className="SearchForm">
-            <div className="form-container">
-                <form onSubmit={onSubmit}>
-                 <label>
-                     Trip Title:    
-                    <input type="text" name="title" placeholder="Give your trip a name." value={title}
-                    onChange={(e) => setTitle(e.target.value)} />
-                </label>
-                
-                <label>
-                     Destination:
-                    <input type="text" id="tripDestination"  placeholder="Enter a city and/or state." value={tripDestination}
-                    onChange={(e) => setTripDestination(e.target.value.replace(/[^a-z]/gi, ''))} />
-                </label>
-
           <label>
             Start Date:
             <input
@@ -195,7 +173,10 @@ export function SearchForm() {
             </button>
           </div>
         </div>
-
-    </div>    
-    )
+      ))}
+      <div className="Footer">
+        <Footer />
+      </div>
+    </div>
+  );
 }

@@ -2,13 +2,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
-
-import { fetchItinerary } from "../services/itineraryOpsService";
-import "../css/ItineraryDetails.css"
-import Navbar from "./Navbar";
-
 import { deletePlace, fetchItinerary } from "../services/itineraryOpsService";
-
 
 export interface IItineraryDetailsProps {}
 
@@ -25,20 +19,22 @@ export function ItineraryDetails(props: IItineraryDetailsProps) {
     loadItinerary();
   }, [id, deleted]);
 
+  function handleRemoveButton(x: string) {
+    if (itinerary?._id) {
+      deletePlace(itinerary._id, x).then(() => {
+        setDeleted(!deleted);
+      });
+    }
+  }
   return (
     <div>
-      <Navbar />
-      <div className="Itinerary-Details">
-    <h1>My Trip</h1>
-    {itinerary?.place.map((x, index) => (
+      {itinerary?.place.map((x, index) => (
         <div key={index}>
-          <h2>{x.name}</h2>
+          <h1>{x.name}</h1>
           <button onClick={() => handleRemoveButton(x.id)}>Remove</button>
           <button>Details</button>
         </div>
       ))}
-  </div>
     </div>
-  )
-
+  );
 }
