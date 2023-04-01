@@ -4,13 +4,12 @@ import PlaceContext from '../context/PlaceContext';
 import { fetchNearbySearch } from '../services/ApiServices';
 import "../css/SelectNearbyPlaces.css"
 import { NearbySearch, Result } from "../models/nearbySearch";
-import { Itinerary, Place } from "../models/itinerary";
-import Navbar from './Navbar';
+import { Itinerary } from "../models/itinerary";
 import Footer from './Footer';
+
+import Navbar from './Navbar';
 import { addToItinerary } from '../services/itineraryOpsService';
 import { useLocation } from 'react-router-dom';
-
-
 
 export interface ISelectedNearbyPlacesProps {
   addItinerary: (itinerary: Itinerary) => Promise<Itinerary>;
@@ -19,8 +18,10 @@ export interface ISelectedNearbyPlacesProps {
 export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const { selectedDestination } = useContext(PlaceContext);
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
+  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
   const selectedPlace = location.state.selectedPlace as Result
+
 
   useEffect(() => {
     async function fetchPlaces() {
@@ -47,12 +48,16 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       lat:place.geometry.location.lat,
       lng:place.geometry.location.lng
     };
+
     addToItinerary(selectedPlace.place_id,newPlace) 
+
   }  
 
  return (
   <div>
-    <Navbar />
+    <div>
+      <Navbar />
+    </div>
     <div className="selectedNearbyPlaces">
       <h1>Nearby Places</h1>
       <div className="places-card">
@@ -66,21 +71,26 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
               />
             )}
             <div className="place-details">
-              <h2>{place.name}</h2>
-              <h2>Rating: {place.rating}</h2>
-              <h2>{place.types[0]}</h2>
-              <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
-                Add to Itinerary{" "}
-              </button>
+              <h4>{place.name}</h4>
+              <h4>Rating: {place.rating}</h4>
+              <h4>{place.types[0]}</h4>
+              {!addedToItinerary[place.place_id] ? (
+                  <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
+                    Add to Itinerary
+                  </button>
+                ) : (
+                  <>
+                    <button className="addeditinerary-button">Added to Itinerary</button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+      <div className="Footer">
+        <Footer />
       </div>
     </div>
-    <div className="Footer">
-      <Footer />
-    </div>
-  </div>
-);
-
+  );
 }
