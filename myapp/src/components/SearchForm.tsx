@@ -109,7 +109,7 @@ export function SearchForm() {
             />
           </label>
 
-          <label>
+          {/* <label>
             Radius:
             <input
               type="number"
@@ -117,7 +117,7 @@ export function SearchForm() {
               value={radius}
               onChange={(e) => setRadius(Number(e.target.value))}
             />
-          </label>
+          </label> */}
 
           <label>
             Start Date:

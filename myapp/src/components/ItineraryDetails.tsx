@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { deletePlace, fetchItinerary } from "../services/itineraryOpsService";
+import Navbar from "./Navbar";
 
 export interface IItineraryDetailsProps {}
 
@@ -28,6 +29,8 @@ export function ItineraryDetails(props: IItineraryDetailsProps) {
   }
   return (
     <div>
+      <Navbar />
+      <div className="ItineraryDetails"></div>
       {itinerary?.place.map((x, index) => (
         <div key={index}>
           <h1>{x.name}</h1>
