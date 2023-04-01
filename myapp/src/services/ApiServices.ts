@@ -3,7 +3,7 @@ import { NearbySearch } from "../models/nearbySearch";
 import { PlaceDetails } from "../models/placeDetails";
 import { TextSearch } from "../models/textSearch";
 
-const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/";
+const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/map";
 
 export function fetchTextSearch(
   query: String,
@@ -23,7 +23,7 @@ export function fetchNearbySearch(
   // const location = `${lat},${lng}`;
   return axios
     .get<NearbySearch>(`${baseURL}`, {
-      params: { lat,lng, radius },
+      params: { lat, lng, radius },
     })
     .then((response) => response.data);
 }

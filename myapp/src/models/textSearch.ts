@@ -8,17 +8,17 @@ export interface TextSearch {
 }
 
 export interface Result {
-    business_status:       BusinessStatus;
+    business_status?:       BusinessStatus;
     formatted_address:     string;
     geometry:              Geometry;
-    icon:                  string;
-    icon_background_color: IconBackgroundColor;
-    icon_mask_base_uri:    string;
+    icon?:                  string;
+    icon_background_color?: IconBackgroundColor;
+    icon_mask_base_uri?:    string;
     name:                  string;
     opening_hours:         OpeningHours;
     photos:                Photo[];
     place_id:              string;
-    plus_code:             PlusCode;
+    plus_code?:             PlusCode;
     price_level?:          number;
     rating:                number;
     reference:             string;

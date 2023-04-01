@@ -16,9 +16,9 @@ export function Authentication(){
         <div>
             {
                 user == null ?
-                <button  onClick={handleSignIn}>Sign in with Google</button>
+                <button className="auth-button" onClick={handleSignIn}>Sign in with Google</button>
                 :
-                <button onClick={signOut}>Sign out</button>
+                <button className="auth-button" onClick={signOut}>Sign out</button>
             }
         </div>
     )
