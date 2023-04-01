@@ -4,7 +4,7 @@ import PlaceContext from '../context/PlaceContext';
 import { fetchNearbySearch } from '../services/ApiServices';
 import "../css/SelectNearbyPlaces.css"
 import { NearbySearch, Result } from "../models/nearbySearch";
-import { Itinerary } from "../models/itinerary";
+import { Itinerary, Place } from "../models/itinerary";
 import Footer from './Footer';
 
 import Navbar from './Navbar';

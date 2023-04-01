@@ -44,7 +44,7 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
     <tr>
       <th>Trip Name</th>
       <th>Destination</th>
-      <th>Itinerary</th>
+      <th>Itineraries</th>
     </tr>
   </thead>
   <tbody>
