@@ -41,8 +41,10 @@
 .nav-links:hover {
     background-color: #f1ddbf;
     color: #222;
-    border-radius: 4px;
     transition: all 0.2s ease-in-out;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    border-radius: 0.3rem;
 }
 
 .nav-links-mobile {

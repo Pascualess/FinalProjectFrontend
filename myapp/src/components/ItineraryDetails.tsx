@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { deletePlace, fetchItinerary } from "../services/itineraryOpsService";
 import Navbar from "./Navbar";
+import "../css/ItineraryDetails.css"
 
 export interface IItineraryDetailsProps {}
 
