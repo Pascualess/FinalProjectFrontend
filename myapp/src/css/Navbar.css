@@ -42,6 +42,7 @@
     background-color: #f1ddbf;
     color: #222;
     border-radius: 4px;
+    padding:8px;
     transition: all 0.2s ease-in-out;
 }
 

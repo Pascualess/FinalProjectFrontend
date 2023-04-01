@@ -19,7 +19,11 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
   const [selectedItinerary, setSelectedItinerary] = useState<Itinerary>();
   const [itineraries, setItineraries] = useState<Itinerary[]>([]);
+  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
 
+//this is rendering every time the selectedDestination is updated.
+//the async function fetchPlaces makes an API call to get the nearby places from FetchNearbySearch
+//results are set to nearbyPlace using setNearbyPlaces
   useEffect(() => {
     async function fetchPlaces() {
       const places = await fetchNearbySearch(
@@ -46,18 +50,20 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       endDate: "",
     };
 
-    // const newItinerary: Itinerary = {
-    //   tripTitle: "",
-    //   name: "",
-    //   place: [],
-    //   startDate: "",
-    //   endDate: "",
-    // };
+    const newItinerary: Itinerary = {
+      tripTitle: "",
+      name: "",
+      place: [],
+      startDate: "",
+      endDate: "",
+      lat: 0,
+      lng: 0,
+    };
 
-    // props.addItinerary(newItinerary).then((itinerary) => {
-    //   setSelectedItinerary(itinerary);
-    //   handleAddToItinerary(newItinerary);
-    // });
+    setItineraries([...itineraries, newItinerary]);
+    setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
+    //this code is updating the addedtoItinerary variable. 
+    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
   }  
 
  return (
@@ -76,22 +82,30 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
               />
             )}
             <div className="place-details">
-              <h2>{place.name}</h2>
-              <h2>Rating: {place.rating}</h2>
-              <h2>{place.types[0]}</h2>
-              <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
-                Add to Itinerary{" "}
-              </button>
+              <p><b>{place.name}</b></p>
+              <p>Rating: {place.rating}</p>
+              <p>Type: {place.types[0]}</p>
+              {!addedToItinerary[place.place_id] ? (
+                  <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
+                    Add to Itinerary
+                  </button>
+                ) : (
+                  <>
+                    <button className="addeditinerary-button">Added to Itinerary</button>
+                    <button className="removeitinerary-button" onClick={() => setAddedToItinerary({ ...addedToItinerary, [place.place_id]: false })}>
+                      Remove from Itinerary
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
       </div>
-      {/* {selectedItinerary && <ItinerariesPage itinerary={selectedItinerary} />} */}
+      <div className="Footer">
+        <Footer />
+      </div>
     </div>
-    <div className="Footer">
-      <Footer />
-    </div>
-  </div>
-);
-
+  );
 }
