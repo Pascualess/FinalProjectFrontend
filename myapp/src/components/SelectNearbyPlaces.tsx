@@ -73,9 +73,6 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
                 ) : (
                   <>
                     <button className="addeditinerary-button">Added to Itinerary</button>
-                    <button className="removeitinerary-button" onClick={() => setAddedToItinerary({ ...addedToItinerary, [place.place_id]: false })}>
-                      Remove from Itinerary
-                    </button>
                   </>
                 )}
               </div>
