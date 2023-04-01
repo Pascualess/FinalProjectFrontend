@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import Footer from "./Footer";
 import Hero from "./Hero";
-import Navbar from "./Navbar";
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result} from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
@@ -64,7 +63,6 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
 
     return (
         <div className="SearchForm">
-            <Navbar />
             <Hero />
             <div className="form-container">
                 <form onSubmit={onSubmit}>

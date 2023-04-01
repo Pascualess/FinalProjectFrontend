@@ -4,10 +4,8 @@ import PlaceContext from '../context/PlaceContext';
 import { fetchNearbySearch } from '../services/ApiServices';
 import "../css/SelectNearbyPlaces.css"
 import { NearbySearch, Result } from "../models/nearbySearch";
-import { Itinerary, Place } from "../models/itinerary";
-import Navbar from './Navbar';
+import { Itinerary } from "../models/itinerary";
 import Footer from './Footer';
-import { addToItinerary } from '../services/itineraryOpsService';
 
 
 export interface ISelectedNearbyPlacesProps {
@@ -17,8 +15,7 @@ export interface ISelectedNearbyPlacesProps {
 export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const { selectedDestination } = useContext(PlaceContext);
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
-  const [selectedItinerary, setSelectedItinerary] = useState<Itinerary>();
-  const [itineraries, setItineraries] = useState<Itinerary[]>([]);
+  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     async function fetchPlaces() {
@@ -46,11 +43,13 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       lng:place.geometry.location.lng
     };
     // addToItinerary(selectedDestination.place_id,newPlace) Jakes NOTES: the first param needs to work with the backend to id the itinerary so I can add the new place into the array
+    setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
+    //this code is updating the addedtoItinerary variable. 
+    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
   }  
 
  return (
   <div>
-    <Navbar />
     <div className="selectedNearbyPlaces">
       <h1>Nearby Places</h1>
       <div className="places-card">
@@ -64,21 +63,29 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
               />
             )}
             <div className="place-details">
-              <h2>{place.name}</h2>
-              <h2>Rating: {place.rating}</h2>
-              <h2>{place.types[0]}</h2>
-              <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
-                Add to Itinerary{" "}
-              </button>
+              <h4>{place.name}</h4>
+              <h4>Rating: {place.rating}</h4>
+              <h4>{place.types[0]}</h4>
+              {!addedToItinerary[place.place_id] ? (
+                  <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
+                    Add to Itinerary
+                  </button>
+                ) : (
+                  <>
+                    <button className="addeditinerary-button">Added to Itinerary</button>
+                    <button className="removeitinerary-button" onClick={() => setAddedToItinerary({ ...addedToItinerary, [place.place_id]: false })}>
+                      Remove from Itinerary
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+      <div className="Footer">
+        <Footer />
       </div>
     </div>
-    <div className="Footer">
-      <Footer />
-    </div>
-  </div>
-);
-
+  );
 }

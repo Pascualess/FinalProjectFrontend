@@ -10,12 +10,14 @@ import { SelectNearbyPlaces } from "./components/SelectNearbyPlaces";
 import { ItinerariesPage } from "./components/ItinerariesPage";
 import { addItinerary } from "./services/itineraryOpsService";
 import { ItineraryDetails } from "./components/ItineraryDetails";
+import Navbar from "./components/Navbar";
 
 function App() {
   console.log("Rendering App component...")
   return (
     <BrowserRouter>
       <div className="App">
+        <Navbar />
         <AuthContextProvider>
           <PlaceProvider>
         <Routes>
