@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { fetchItinerary } from "../services/itineraryOpsService";
 import "../css/ItineraryDetails.css"
+import Navbar from "./Navbar";
 
 export interface IItineraryDetailsProps {}
 
@@ -19,7 +20,10 @@ export function ItineraryDetails(props: IItineraryDetailsProps) {
     loadItinerary();
   }, [id]);
 
-  return <div className="Itinerary-Details">
+  return (
+    <div>
+      <Navbar />
+      <div className="Itinerary-Details">
     <h1>My Trip</h1>
     {itinerary?.place.map((x, index) => (
         <div key={index}>
@@ -27,5 +31,7 @@ export function ItineraryDetails(props: IItineraryDetailsProps) {
           {/* <button onClick={() => }>Remove</button> */}
         </div>
       ))}
-  </div>;
+  </div>
+    </div>
+  )
 }

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 import '../css/SearchForm.css'
+import Navbar from "./Navbar";
 
 interface ISearchFormProps {
 }
@@ -62,8 +63,10 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
 }
 
     return (
+        <div>
+           <Navbar />
+            <Hero /> 
         <div className="SearchForm">
-            <Hero />
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                  <label>
@@ -123,5 +126,6 @@ const handlePlaceSelection = (selectedPlace:Result,startDate:string,endDate:stri
                 <Footer />
             </div>
         </div>
+    </div>    
     )
 }

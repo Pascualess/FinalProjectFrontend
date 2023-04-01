@@ -6,6 +6,7 @@ import "../css/SelectNearbyPlaces.css"
 import { NearbySearch, Result } from "../models/nearbySearch";
 import { Itinerary } from "../models/itinerary";
 import Footer from './Footer';
+import Navbar from './Navbar';
 
 
 export interface ISelectedNearbyPlacesProps {
@@ -50,6 +51,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
 
  return (
   <div>
+    <div>
+      <Navbar />
+    </div>
     <div className="selectedNearbyPlaces">
       <h1>Nearby Places</h1>
       <div className="places-card">
