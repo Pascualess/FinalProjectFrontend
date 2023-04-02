@@ -1,6 +1,6 @@
 import axios from "axios";
 import { NearbySearch } from "../models/nearbySearch";
-import { PlaceDetails } from "../models/placeDetails";
+import { PlaceDetails, Result } from "../models/placeDetails";
 import { TextSearch } from "../models/textSearch";
 
 const baseURL = "https://us-central1-trippin-dc0bc.cloudfunctions.net/api/map";
@@ -34,10 +34,10 @@ export function fetchPhoto(photo_reference: String): Promise<any> {
     })
     .then((res) => res.data);
 }
-export function fetchDetails(placeId: String): Promise<PlaceDetails> {
+export function fetchDetails(placeId: String): Promise<Result> {
   return axios
     .get<PlaceDetails>(`${baseURL}`, {
       params: { place_id: placeId },
     })
-    .then((res) => res.data);
+    .then((res) => res.data.result);
 }

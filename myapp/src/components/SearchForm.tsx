@@ -104,20 +104,9 @@ export function SearchForm() {
               placeholder="Enter a city and/or state."
               value={tripDestination}
               onChange={(e) =>
-                setTripDestination(e.target.value.replace(/[^a-z]/gi, ""))
-              }
+                setTripDestination(e.target.value)}
             />
           </label>
-
-          {/* <label>
-            Radius:
-            <input
-              type="number"
-              name="radius"
-              value={radius}
-              onChange={(e) => setRadius(Number(e.target.value))}
-            />
-          </label> */}
 
           <label>
             Start Date:
@@ -157,8 +146,8 @@ export function SearchForm() {
         </form>
       </div>
 
-      {results?.results.map((place) => (
-        <div key={place.place_id}>
+      {results?.results.map((place, index) => (
+        <div key={index}>
           <p>{place.formatted_address}</p>
           {/* added this for extra detail on places, 
               so we don't think it's showing the same place twice, but rather different locations with same name */}

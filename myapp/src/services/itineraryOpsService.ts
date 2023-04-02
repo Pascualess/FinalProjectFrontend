@@ -50,5 +50,10 @@ export function deletePlace(
 export function fetchItinerary(id: string): Promise<Itinerary> {
   return axios
     .get<Itinerary>(`${baseUrl}/itinerary/${id}`, {})
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .then((itinerary) => {
+      const startDate = itinerary.startDate;
+      const endDate = itinerary.endDate;
+      return { ...itinerary, startDate, endDate };
+    })
 }

@@ -2,8 +2,14 @@ body {
   background-color: #92ba92;
 }
 .selectedNearbyPlaces {
-  margin: 6rem 1rem;
-  padding: 1rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card-column {
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
 }
 
 .additinerary-button {
@@ -33,7 +39,7 @@ color: #222;
 padding: 0.5rem 1rem;
 white-space: nowrap;
 border-radius: 0.3rem;
-font-size: 1.5rem;
+font-size: 1rem;
 font-weight: 600;
 border: none;
 cursor: pointer;
@@ -53,101 +59,42 @@ justify-content: center;
   padding: 10px;
 }
 
-.place-image {
-  height: 150px;
-  width: 100%;
-  object-fit: cover;
+.places-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .place-details {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
 }
 
-.places-card {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+.place-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
 /* Between 681px and 850px */
 @media screen and (681px <= width <= 850px) {
   .selectedNearbyPlaces {
-      margin: 6rem 1rem;
-      padding: 1rem;
-    }
-  
-    .additinerary-button {
-      font-size: 1.2rem;
-    }
-  
-    .places-container {
-      height: 450px;
-      width: 100%;
-      margin: 10px;
-      margin-bottom: 1rem;
-      padding: 1rem;
-    }
-  
-    .place-image {
-      height: 200px;
-    }
-  
-    .places-card {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      /* the 2 is the columns, minmax refers to the min/max width of the columns
-      min =0 and max=1fr, which means column can expand to fill avaiable space but will not shrink below 0*/
-    }
+    max-width: 540px;
+  }
 }
 
 /* Between 851px and 1100px */
 @media screen and (851px <= width <= 1100px) {
   .selectedNearbyPlaces {
-      margin: 6.5rem 1rem;
-      padding: 1rem;
-    }
-  
-    .additinerary-button {
-      font-size: 1.4rem;
-    }
-  
-    .places-container {
-      height: 500px;
-      width: 100%;
-    }
-  
-    .place-image {
-      height: 250px;
-    }
-  
-    .places-card {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    max-width: 960px;
+  }
 }
 
 /* Over 1101px */
 @media screen and (width >= 1101px ) {
   .selectedNearbyPlaces {
-      margin: 6.5rem 1rem;
-      padding: 1rem;
-    }
-  
-    .additinerary-button {
-      font-size: 1.6rem;
-    }
-  
-    .places-container {
-      height: 500px;
-    }
-  
-    .place-image {
-      height: 300px;
-    }
-    .places-card {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    max-width: 1140px;
+  }
 }

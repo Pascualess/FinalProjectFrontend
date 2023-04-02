@@ -9,7 +9,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { addToItinerary } from '../services/itineraryOpsService';
 import { useLocation } from 'react-router-dom';
-
+import { Col, Container, Row, Card, CardImg, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 
 export interface ISelectedNearbyPlacesProps {
@@ -19,6 +19,7 @@ export interface ISelectedNearbyPlacesProps {
 export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const { selectedDestination } = useContext(PlaceContext);
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
+  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
   const selectedPlace = location.state.selectedPlace as Result
 
@@ -47,40 +48,50 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       lat:place.geometry.location.lat,
       lng:place.geometry.location.lng
     };
-    addToItinerary(selectedPlace.place_id,newPlace) 
+    addToItinerary(selectedPlace.place_id,newPlace);
+    setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
+    //this code is updating the addedtoItinerary variable. 
+    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
+     
   }  
 
- return (
-  <div>
-    <Navbar />
-    <div className="selectedNearbyPlaces">
-      <h1>Nearby Places</h1>
-      <div className="places-card">
-        {nearbyPlaces?.results?.map((place) => (
-          <div className="places-container" key={place.place_id}>
-            {place.photos && place.photos.length > 0 && (
-              <img
-                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`}
-                alt=""
-                className="place-image"
-              />
-            )}
-            <div className="place-details">
-              <h2>{place.name}</h2>
-              <h2>Rating: {place.rating}</h2>
-              <h2>{place.types[0]}</h2>
-              <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
-                Add to Itinerary{" "}
-              </button>
-            </div>
-          </div>
-        ))}
+  return (
+    <div>
+      <Navbar />
+      <Container fluid className="selectedNearbyPlaces">
+        <h1>Nearby Places</h1>
+        <Row xs="1" sm="2" md="3" lg="4" xl="5">
+          {nearbyPlaces?.results?.map((place, index) => (
+            <Col key={index}>
+              <Card className="mb-3 card-column">
+                {place.photos && place.photos.length > 0 && (
+                  <CardImg top src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`} 
+                  alt="Place" />
+                )}
+                <CardBody>
+                  <CardTitle tag="h2">{place.name}</CardTitle>
+                  <CardSubtitle tag="h3" className="mb-2 text-muted">{place.types[0]}</CardSubtitle>
+                  <CardSubtitle tag="h4" className="mb-2">{`Rating: ${place.rating}`}</CardSubtitle>
+                  {!addedToItinerary[place.place_id] ? (
+                    <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
+                      Add to Itinerary
+                    </button>
+                  ) : (
+                    <>
+                    <button className="addeditinerary-button">
+                      Added to Itinerary
+                    </button>
+                    </>
+                  )}
+                </CardBody>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <div className="Footer">
+        <Footer />
       </div>
     </div>
-    <div className="Footer">
-      <Footer />
-    </div>
-  </div>
-);
-
+  );
 }
