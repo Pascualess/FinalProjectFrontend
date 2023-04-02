@@ -21,19 +21,23 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
   const location = useLocation();
   const selectedPlace = location.state.selectedPlace as Result
+  const [type, setType] = useState<string>("point_of_interest");
 
   useEffect(() => {
     async function fetchPlaces() {
       const places = await fetchNearbySearch(
         selectedDestination.geometry.location.lat,
         selectedDestination.geometry.location.lng,
-        50000
+        50000,
+        type
       );
       setNearbyPlaces(places);
       console.log( selectedPlace);
     }
     fetchPlaces();
-  }, [selectedDestination,selectedPlace]);
+  }, [selectedDestination,selectedPlace, type]);
+
+
 
   function handleAddToItineraryOnClick(place: Result) { //Jakes Note: This needs to fetch data from the back end to add the place to the itinerary 
     const newPlace:Place = {
@@ -55,6 +59,23 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
     <Navbar />
     <div className="selectedNearbyPlaces">
       <h1>Nearby Places</h1>
+      <select value={type} onChange={(e) => setType(e.target.value)}>
+        <option value="Select Type">Select Type</option>
+  <option value="amusement_park">Amusement Park</option>
+  <option value="aquarium">Aquarium</option>
+  <option value="art_gallery">Art Gallery</option>
+  <option value="bowling_alley">Bowling Alley</option>
+  <option value="cafe">Cafe</option>
+  <option value="campground">Campground</option>
+  <option value="casino">Casino</option>
+  <option value="movie_theater">Movie Theater</option>
+  <option value="museum">Museum</option>
+  <option value="night_club">Night Club</option>
+  <option value="park">Park</option>
+  <option value="rv_park">RV Park</option>
+  <option value="tourist_attraction">Tourist Attraction</option>
+  <option value="zoo">Zoo</option>
+      </select>
       <div className="places-card">
         {nearbyPlaces?.results?.map((place) => (
           <div className="places-container" key={place.place_id}>
