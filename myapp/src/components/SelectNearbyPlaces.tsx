@@ -19,6 +19,7 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
   const location = useLocation();
   const selectedPlace = location.state.selectedPlace as Result;
+  const selectedTitle = location.state.selectedTitle
   const isEditing = location.state?.isEditing;
   const editedItinerary: Itinerary = location.state?.editedItinerary;
   const [type, setType] = useState<string>("point_of_interest");
@@ -64,9 +65,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       lng: place.geometry.location.lng,
     };
     if (isEditing) {
-      addToItinerary(editedItinerary.place_id, newPlace);
+      addToItinerary(editedItinerary.place_id, editedItinerary.tripName, newPlace);
     } else {
-      addToItinerary(selectedPlace.place_id, newPlace);
+      addToItinerary(selectedPlace.place_id, selectedTitle, newPlace);
     }
   }
 

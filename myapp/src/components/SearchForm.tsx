@@ -69,7 +69,8 @@ export function SearchForm() {
     console.log("Inserted itinerary ID:", insertedId);
     navigate('/nearby', {
       state: {
-        selectedPlace:selectedPlace
+        selectedPlace:selectedPlace,
+        selectedTitle:title
       },
       replace: true // Replace the current URL in the history stack
     });

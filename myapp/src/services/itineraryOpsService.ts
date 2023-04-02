@@ -24,9 +24,9 @@ export function addItinerary(itinerary: Itinerary): Promise<Itinerary> {
 }
 
 //add place to trip
-export function addToItinerary(place_id: string, place: Place): Promise<Place> {
+export function addToItinerary(place_id: string, tripName:string, place: Place): Promise<Place> {
   return axios
-    .put<Place>(`${baseUrl}/itinerary/${place_id}`, place)
+    .put<Place>(`${baseUrl}/itinerary/${place_id}/${tripName}`, place)
     .then((res) => {
       console.log(`Added new place to itinerary`);
       return res.data;
