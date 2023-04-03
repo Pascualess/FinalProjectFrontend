@@ -10,6 +10,7 @@ import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 import "../css/SearchForm.css";
 
+
 interface ISearchFormProps {}
 
 //created a bunch of state variables to store the users input from the search form
@@ -21,6 +22,8 @@ export function SearchForm() {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [selectedCompany, setSelectedCompany] = useState<string>("solo");
+ 
+
 
   //the useContext hook is accessing the setDestination function from PlaceContext
   const { setDestination } = useContext(PlaceContext);
@@ -43,7 +46,7 @@ export function SearchForm() {
     selectedPlace: Result,
     startDate: string,
     endDate: string,
-    title: string
+    title: string,
   ) => {
     setDestination(selectedPlace);
 
@@ -67,7 +70,8 @@ export function SearchForm() {
     console.log("Inserted itinerary ID:", insertedId);
     navigate('/nearby', {
       state: {
-        selectedPlace:selectedPlace
+        selectedPlace:selectedPlace,
+        selectedTitle:title
       },
       replace: true // Replace the current URL in the history stack
     });
@@ -104,18 +108,8 @@ export function SearchForm() {
               placeholder="Enter a city and/or state."
               value={tripDestination}
               onChange={(e) =>
-                setTripDestination(e.target.value.replace(/[^a-z]/gi, ""))
-              }
-            />
-          </label>
+                setTripDestination(e.target.value)}
 
-          <label>
-            Radius:
-            <input
-              type="number"
-              name="radius"
-              value={radius}
-              onChange={(e) => setRadius(Number(e.target.value))}
             />
           </label>
 
@@ -157,8 +151,8 @@ export function SearchForm() {
         </form>
       </div>
 
-      {results?.results.map((place) => (
-        <div key={place.place_id}>
+      {results?.results.map((place, index) => (
+        <div key={index}>
           <p>{place.formatted_address}</p>
           {/* added this for extra detail on places, 
               so we don't think it's showing the same place twice, but rather different locations with same name */}
