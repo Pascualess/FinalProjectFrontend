@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 20px;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .25);
     width: 95%;
     height: 80px;
@@ -19,6 +19,7 @@
     color: #535e75;
     font-size: 2rem;
     cursor: pointer;
+    margin: 0;
 }
 
 .nav-menu {
@@ -41,10 +42,9 @@
 .nav-links:hover {
     background-color: #f1ddbf;
     color: #222;
+    border-radius: 4px;
+    padding:8px;
     transition: all 0.2s ease-in-out;
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
-    border-radius: 0.3rem;
 }
 
 .nav-links-mobile {
@@ -92,17 +92,12 @@
     cursor: pointer;
 }
 
-.menu-icons i {
-    font-size: 1.2rem;
-    color: #535e75;
-}
-
 /* Between 681px and 850px */
 @media screen and (681px <= width <= 850px) {
     .nav-menu {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: flex-end;
        background-color: #fff;
        width: 100%;
        height: auto;

@@ -1,11 +1,11 @@
-body {
+Footer body {
     background-color: #f1ddbf;
 }
 .Footer {
     padding: 2rem 2rem;
     background-color: #f1ddbf;
     color: #525e75;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .top {
@@ -56,7 +56,7 @@ body {
 /* Between 681px and 850px */
 @media screen and (681px <= width <= 850px){
     .Footer {
-        padding: 4rem 3rem;
+        padding: 3rem 3rem;
       }
     
       .top i {

@@ -1,71 +1,101 @@
 .My-Itineraries {
-    margin: 3rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .My-Itineraries table {
-    border-collapse: collapse;
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    width: 100%;
-  }
-  
-  .My-Itineraries th {
-    background-color: #F7F7F7;
-    font-weight: bold;
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  .My-Itineraries td {
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .My-Itineraries button {
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 0.3rem;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .My-Itineraries button:hover {
-    background-color: #3e8e41e0;
-    color: #fff;
-  }
-  
-  /* Media queries */
-  
+  margin-top: 6.5rem;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow:auto;
+  max-width: 100%;
+}
+
+.My-Itineraries table {
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.My-Itineraries th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.My-Itineraries td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.My-Itineraries button {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.My-Itineraries button:hover {
+  background-color: #3e8e41e0;
+  color: #fff;
+}
+
+.function-buttons {
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.function-buttons button {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  margin-right: 10px;
+}
+
+.function-buttons button:hover {
+  background-color: #3e8e41e0;
+  color: #fff;
+}
+
    /* Between 681px and 850px */
    @media screen and (681px <= width <= 850px) {
     .My-Itineraries {
-      margin: 5rem 1rem;
+      margin: 7rem 1rem;
+      padding: 1rem;
     }
   }
   
   /* Between 851px and 1100px */
   @media screen and (851px <= width <= 1100px) {
     .My-Itineraries {
-      margin: 6rem 1rem;
+      margin: 7.5rem 2rem;
     }
   }
   
   /* Over 1101px */
   @media screen and (width >= 1101px ) {
     .My-Itineraries {
-      margin: 7rem 1rem;
+      margin: 7.5rem 2rem;
     }
   }

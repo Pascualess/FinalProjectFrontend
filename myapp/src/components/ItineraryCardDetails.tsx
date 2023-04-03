@@ -45,7 +45,8 @@ export function ItineraryCardDetails () {
                       <p>{text}</p>)}</p>
                       <p><b>Rating: </b>{detailsRoute.rating}</p>
                       <p><b>Type: </b>{detailsRoute.types[0].replace(/_/g, " ")}</p>
-                      <p><b>Website: </b>{detailsRoute.website}</p>
+                      <p><b>Website: </b><a href={detailsRoute.website} target="_blank" rel="noopener noreferrer">
+                            {detailsRoute.website}</a></p>
                     </div>
                 </Card>
                 </Col>
