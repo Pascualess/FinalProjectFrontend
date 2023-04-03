@@ -8,9 +8,10 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   flex-direction: column;
-  width: 100%;
   background-color: #78938a;
   margin: auto;
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .SearchForm {
@@ -22,12 +23,10 @@
   text-align: center;
 }
 
-label {
-  padding: 10px;
-  min-width: 20vh;
+.form-container label {
+  min-width: 25rem;
   max-width: 30vh;
   display: inline-block;
-  width: 100%;
   margin: auto;
 }
 
@@ -40,7 +39,8 @@ label {
   margin-bottom: 2rem;
   border-radius: .3rem;
   border: 1px solid #2a2a2a;
-  width: 100%;
+  min-width: 25rem;
+  max-width: 30vh;
 }
 
 .form-container button {
@@ -51,10 +51,10 @@ label {
   color: #535e75;
   border-style: outset;
   border-color: #222;
-  height: 75px;
-  width: 15vh;
+  height: 3rem;
+  width: 10rem;
   font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 2rem;
   border-radius: 12px;
   margin: auto;
@@ -67,7 +67,7 @@ label {
 
 .form-container select {
   font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
+  font-size: 1.2rem;
   height: 3rem;
   padding: 0 1rem;
   margin-bottom: 2rem;
@@ -77,66 +77,47 @@ label {
 }
 
 .handle-button {
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    background-color: #535e75;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 600;
-    display: inline-block;
-    justify-content: center;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  background-color: #535e75;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: inline-block;
+  justify-content: center;
 }
 
 .handle-button:hover {
-    background-color: #f1ddbf;
-    color: #535e75;
+  background-color: #f1ddbf;
+  color: #535e75;
 }
 
-Footer {
-  position: fixed;
-}
 
-/* Between 681px and 800px */
-@media screen and (681px <= width <= 800px) {
+/* Between 681px and 850px */
+@media screen and (681px <= width <= 850px) {
   .form-container {
-    /* margin: 4rem 6rem; */
     margin: auto;
     padding: 2rem;
   }
 
-  .form-container form {
-    margin: auto;
-    width: 30vh;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .form-container input,
-  .form-container select {
-    width: 25vh;
-  }
 }
 
-/* Between 801px and 1100px */
-@media (801 <= width >= 1100px) {
+/* Between 851px and 1100px */
+@media screen and (851px <= width <= 1100px) {
   .form-container {
     margin: 4rem 2rem;
   }
+}
 
-  .form-container form {
-    width: 25vh;
-    display: inline-block;
-    text-align: center;
+/* Over 1101px */
+@media screen and (width >= 1101px) {
+  .form-container {
+    margin: 4rem 2rem;
   }
-
-  .form-container input,
-  .form-container select {
-    width: 25vh;
-  } 
 }

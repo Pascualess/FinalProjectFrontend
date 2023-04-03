@@ -64,7 +64,7 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
         <tr key={index}>
           <td className="trip-title">{x.tripName}</td>
           <td className="place-name">{x.name}</td>
-          <td>
+          <td className="function-buttons">
           <button className="additinerary-button" onClick={() => handleViewButton(x)}>View</button>
           <button onClick={() => handleEditButton(x)}>Edit</button>
           {x._id && (

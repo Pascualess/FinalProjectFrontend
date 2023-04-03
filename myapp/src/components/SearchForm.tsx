@@ -135,7 +135,7 @@ export function SearchForm() {
 
           <label>
             Who is going? (This will tailor the activities):
-            <select
+            <select className="selectCompany-button"
               value={selectedCompany}
               onChange={(e) => setSelectedCompany(e.target.value)}
             >
@@ -146,7 +146,7 @@ export function SearchForm() {
             </select>
           </label>
           <button className="submit" type="submit" value="submit">
-            Search
+            Plan
           </button>
         </form>
       </div>

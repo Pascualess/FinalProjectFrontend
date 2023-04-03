@@ -80,9 +80,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   return (
     <div>
       <Navbar />
-      <Container fluid className="selectedNearbyPlaces">
+      <div className="selectNearbyPlaces">
         <h1>Nearby Places</h1>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
+        <select className="types" value={type} onChange={(e) => setType(e.target.value)}>
           <option value="Select Type">Select Type</option>
           <option value="amusement_park">Amusement Park</option>
           <option value="aquarium">Aquarium</option>
@@ -99,17 +99,17 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
           <option value="tourist_attraction">Tourist Attraction</option>
           <option value="zoo">Zoo</option>
         </select>
-        <Row>
+        <Row className="NearbyPlacesRow">
           {nearbyPlaces?.results?.map((place, index) => (
-            <Col xs="12" sm="6" md="4" lg="3" key={index}>
+            <Col className="places-column"key={index}>
               <Card className="mb-3 card-column">
                 {place.photos && place.photos.length > 0 && (
                   <CardImg top src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`} 
                   alt="Place" />
                 )}
                 <CardBody>
-                  <CardTitle tag="h2">{place.name}</CardTitle>
-                  <CardSubtitle tag="h3" className="mb-2 text-muted">{place.types[0].replace(/_/g, " ")}</CardSubtitle>
+                  <CardTitle tag="h3">{place.name}</CardTitle>
+                  <CardSubtitle tag="h4" className="mb-2 text-muted">{place.types[0].replace(/_/g, " ")}</CardSubtitle>
                   <CardSubtitle tag="h4" className="mb-2">{`Rating: ${place.rating}`}</CardSubtitle>
                   {!addedToItinerary[place.place_id] ? (
                     <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
@@ -127,7 +127,7 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
             </Col>
           ))}
         </Row>
-      </Container>
+      </div>
       <div className="Footer">
         <Footer />
       </div>
