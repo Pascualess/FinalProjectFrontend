@@ -56,7 +56,7 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
     <tr>
       <th>Trip Name</th>
       <th>Destination</th>
-      <th>Itineraries</th>
+      <th>Functions</th>
     </tr>
   </thead>
   <tbody>
@@ -64,14 +64,12 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
         <tr key={index}>
           <td className="trip-title">{x.tripName}</td>
           <td className="place-name">{x.name}</td>
-
-          <td><button className="additinerary-button" onClick={() => handleViewButton(x)}>View Itinerary</button></td>
+          <td>
+          <button className="additinerary-button" onClick={() => handleViewButton(x)}>View</button>
+          <button onClick={() => handleEditButton(x)}>Edit</button>
           {x._id && (
-        <td><button className="delete-button" onClick={() => handleDeleteButton(x._id)}>Delete</button></td>
-      )}
-
-          <td><button className="additinerary-button" onClick={() => handleViewButton(x)}>View Itinerary</button><button onClick={() => handleEditButton(x)}>Edit</button></td>
-
+         <button className="delete-button" onClick={() => handleDeleteButton(x._id)}>Delete</button>
+         )}</td>
         </tr>
       ))}
      </tbody>

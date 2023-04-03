@@ -18,13 +18,13 @@ export interface ISelectedNearbyPlacesProps {
 export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
   const { selectedDestination } = useContext(PlaceContext);
   const [nearbyPlaces, setNearbyPlaces] = useState<NearbySearch>();
-  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
   const selectedPlace = location.state.selectedPlace as Result;
   const selectedTitle = location.state.selectedTitle
   const isEditing = location.state?.isEditing;
   const editedItinerary: Itinerary = location.state?.editedItinerary;
   const [type, setType] = useState<string>("point_of_interest");
+  const [addedToItinerary, setAddedToItinerary] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     async function fetchPlacesForEdit() {
@@ -66,16 +66,14 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       lat: place.geometry.location.lat,
       lng: place.geometry.location.lng,
     };
-    addToItinerary(selectedPlace.place_id,newPlace);
-    setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
-    //this code is updating the addedtoItinerary variable. 
-    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
-     
-  }  
     if (isEditing) {
       addToItinerary(editedItinerary.place_id, editedItinerary.tripName, newPlace);
+      setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
     } else {
       addToItinerary(selectedPlace.place_id, selectedTitle, newPlace);
+      setAddedToItinerary({ ...addedToItinerary, [place.place_id]: true });
+    //this code is updating the addedtoItinerary variable. 
+    //This is keeping track of the place_id that is being added to the list so the user doesn't add it twice
     }
   }
 
@@ -111,7 +109,7 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
                 )}
                 <CardBody>
                   <CardTitle tag="h2">{place.name}</CardTitle>
-                  <CardSubtitle tag="h3" className="mb-2 text-muted">{place.types[0]}</CardSubtitle>
+                  <CardSubtitle tag="h3" className="mb-2 text-muted">{place.types[0].replace(/_/g, " ")}</CardSubtitle>
                   <CardSubtitle tag="h4" className="mb-2">{`Rating: ${place.rating}`}</CardSubtitle>
                   {!addedToItinerary[place.place_id] ? (
                     <button className="additinerary-button" onClick={() => handleAddToItineraryOnClick(place)}>
