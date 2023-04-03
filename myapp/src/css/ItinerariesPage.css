@@ -1,9 +1,11 @@
 .My-Itineraries {
-  margin: 3rem 1rem;
-  padding: 2rem;
+  margin-top: 6.5rem;
+  padding: 1rem;
   background-color: #f4f4f4;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow:auto;
+  max-width: 100%;
 }
 
 .My-Itineraries table {
@@ -79,20 +81,21 @@
    /* Between 681px and 850px */
    @media screen and (681px <= width <= 850px) {
     .My-Itineraries {
-      margin: 5rem 1rem;
+      margin: 7rem 1rem;
+      padding: 1rem;
     }
   }
   
   /* Between 851px and 1100px */
   @media screen and (851px <= width <= 1100px) {
     .My-Itineraries {
-      margin: 6rem 1rem;
+      margin: 7.5rem 2rem;
     }
   }
   
   /* Over 1101px */
   @media screen and (width >= 1101px ) {
     .My-Itineraries {
-      margin: 7rem 1rem;
+      margin: 7.5rem 2rem;
     }
   }
