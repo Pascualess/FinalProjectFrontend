@@ -10,6 +10,7 @@ import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 import "../css/SearchForm.css";
 
+
 interface ISearchFormProps {}
 
 //created a bunch of state variables to store the users input from the search form
@@ -21,6 +22,7 @@ export function SearchForm() {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [selectedCompany, setSelectedCompany] = useState<string>("solo");
+ 
 
 
   //the useContext hook is accessing the setDestination function from PlaceContext
@@ -44,7 +46,7 @@ export function SearchForm() {
     selectedPlace: Result,
     startDate: string,
     endDate: string,
-    title: string
+    title: string,
   ) => {
     setDestination(selectedPlace);
 
@@ -68,7 +70,8 @@ export function SearchForm() {
     console.log("Inserted itinerary ID:", insertedId);
     navigate('/nearby', {
       state: {
-        selectedPlace:selectedPlace
+        selectedPlace:selectedPlace,
+        selectedTitle:title
       },
       replace: true // Replace the current URL in the history stack
     });
@@ -106,6 +109,7 @@ export function SearchForm() {
               value={tripDestination}
               onChange={(e) =>
                 setTripDestination(e.target.value)}
+
             />
           </label>
 

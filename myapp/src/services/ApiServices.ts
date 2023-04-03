@@ -18,12 +18,13 @@ export function fetchTextSearch(
 export function fetchNearbySearch(
   lat: number,
   lng: number,
-  radius: number
+  radius: number,
+  type: string
 ): Promise<NearbySearch> {
   // const location = `${lat},${lng}`;
   return axios
     .get<NearbySearch>(`${baseURL}`, {
-      params: { lat, lng, radius },
+      params: { lat, lng, radius, type },
     })
     .then((response) => response.data);
 }
