@@ -47,8 +47,25 @@ export function deletePlace(
     .then((res) => res.data);
 }
 
+//delete an entire itinerary for a trip
+export const deleteItinerary = async (itineraryId: ObjectId) => {
+  try {
+    const response = await axios.delete(`${baseUrl}/itinerary/${itineraryId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+
 export function fetchItinerary(id: string): Promise<Itinerary> {
   return axios
     .get<Itinerary>(`${baseUrl}/itinerary/${id}`, {})
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .then((itinerary) => {
+      const startDate = itinerary.startDate;
+      const endDate = itinerary.endDate;
+      return { ...itinerary, startDate, endDate };
+    })
 }

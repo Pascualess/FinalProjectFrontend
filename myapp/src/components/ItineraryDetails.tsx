@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { deletePlace, fetchItinerary } from "../services/itineraryOpsService";
 import Navbar from "./Navbar";
@@ -28,17 +28,36 @@ export function ItineraryDetails(props: IItineraryDetailsProps) {
       });
     }
   }
+
   return (
     <div>
       <Navbar />
-      <div className="ItineraryDetails"></div>
-      {itinerary?.place.map((x, index) => (
-        <div key={index}>
-          <h1>{x.name}</h1>
-          <button onClick={() => handleRemoveButton(x.id)}>Remove</button>
-          <button>Details</button>
-        </div>
-      ))}
+      <div className="ItineraryDetails">
+        <h1>{itinerary?.tripName}</h1>
+        <h2>Start Date: {itinerary?.startDate}</h2>
+        <h2>End Date: {itinerary?.endDate}</h2>
+      </div>
+      <div className="places-list">
+        {itinerary?.place.map((x, index) => (
+          <div key={index} className="place-item">
+            {x.photo_reference && (
+              <img
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${x.photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`}
+                alt=""
+                className="place-image"
+              />
+            )}
+            <h2>{x.name}</h2>
+            <div className="buttons">
+            <Link to={`/details/${x.id}`}>
+                <button className="details-button">Details</button>
+            </Link>
+              <button className="remove-button" onClick={() => handleRemoveButton(x.id)}>Remove</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
+  
 }

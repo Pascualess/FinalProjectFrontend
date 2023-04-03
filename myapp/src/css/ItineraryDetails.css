@@ -1,4 +1,178 @@
 .ItineraryDetails {
-    margin: 3rem 1rem;
+  margin: 6rem 1rem;
+  padding: 1rem;
+  display: inline-block;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.places-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+}
+
+.place-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.place-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.remove-button {
+  background-color: darkred;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  display: inline-block;
+  justify-content: center;
+}
+
+.details-button {
+  background-color: #535e75;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  display: inline-block;
+  justify-content: center;
+}
+
+/* Between 681px and 800px */
+@media screen and (681px <= width <= 850px) {
+  .ItineraryDetails {
+    margin: 6rem 2rem;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .places-list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .place-item {
     padding: 1rem;
   }
+
+  .place-image {
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Between 801px and 1100px */
+@media screen and (851px <= width <= 1100px) {
+  .ItineraryDetails {
+    margin: 7rem 4rem;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .places-list {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.8rem;
+  }
+
+  .place-item {
+    padding: 1.5rem;
+  }
+
+  .place-image {
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* Over 1101px */
+@media screen and (width >= 1101px) {
+  .ItineraryDetails {
+    margin: 7.5rem 4rem;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .places-list {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .place-item {
+    padding: 1.5rem;
+  }
+
+  .place-image {
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+}
