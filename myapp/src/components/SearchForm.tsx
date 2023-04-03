@@ -22,6 +22,7 @@ export function SearchForm() {
   const [endDate, setEndDate] = useState<string>("");
   const [selectedCompany, setSelectedCompany] = useState<string>("solo");
 
+
   //the useContext hook is accessing the setDestination function from PlaceContext
   const { setDestination } = useContext(PlaceContext);
   const navigate = useNavigate();

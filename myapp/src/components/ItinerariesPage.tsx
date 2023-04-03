@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
-import { fetchItineraries } from "../services/itineraryOpsService";
+import { deleteItinerary, fetchItineraries } from "../services/itineraryOpsService";
 import Navbar from "./Navbar";
 import "../css/ItinerariesPage.css"
+import { ObjectId } from "mongodb";
 
 export interface ItinerariesPageProps {}
 
@@ -26,6 +27,21 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
   function handleViewButton(x:Itinerary) {
     navigate(`/itinerary/${x._id}`)
   }
+
+  async function handleDeleteButton(id: ObjectId | undefined) {
+    if (!id) {
+      console.log("Invalid itinerary ID");
+      return;
+    }
+  
+    const result = await deleteItinerary(id);
+    if (result && result.message === "Itinerary deleted successfully") {
+      loadItineraries();
+    } else {
+      console.log("Failed to delete itinerary");
+    }
+  }
+  
   return (
     <div>
       <Navbar />
@@ -45,6 +61,10 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
           <td className="trip-title">{x.tripName}</td>
           <td className="place-name">{x.name}</td>
           <td><button className="additinerary-button" onClick={() => handleViewButton(x)}>View Itinerary</button></td>
+          {x._id && (
+        <td><button className="delete-button" onClick={() => handleDeleteButton(x._id)}>Delete</button></td>
+      )}
+
         </tr>
       ))}
      </tbody>

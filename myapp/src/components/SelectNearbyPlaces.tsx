@@ -60,9 +60,9 @@ export function SelectNearbyPlaces(props: ISelectedNearbyPlacesProps) {
       <Navbar />
       <Container fluid className="selectedNearbyPlaces">
         <h1>Nearby Places</h1>
-        <Row xs="1" sm="2" md="3" lg="4" xl="5">
+        <Row>
           {nearbyPlaces?.results?.map((place, index) => (
-            <Col key={index}>
+            <Col xs="12" sm="6" md="4" lg="3" key={index}>
               <Card className="mb-3 card-column">
                 {place.photos && place.photos.length > 0 && (
                   <CardImg top src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=${place.photos[0].photo_reference}&key=AIzaSyADw6kne2LUqaF8G-njq1U66rgpNkOgM7c`} 
