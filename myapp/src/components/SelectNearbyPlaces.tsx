@@ -9,7 +9,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { addToItinerary } from '../services/itineraryOpsService';
 import { useLocation } from 'react-router-dom';
-import { Col, Container, Row, Card, CardImg, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Col, Row, Card, CardImg, CardBody, CardTitle, CardSubtitle,} from 'reactstrap';
 
 export interface ISelectedNearbyPlacesProps {
   addItinerary: (itinerary: Itinerary) => Promise<Itinerary>;

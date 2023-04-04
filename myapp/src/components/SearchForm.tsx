@@ -5,20 +5,16 @@ import Navbar from "./Navbar";
 import { fetchTextSearch } from "../services/ApiServices";
 import { TextSearch, Result } from "../models/textSearch";
 import PlaceContext from "../context/PlaceContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { addItinerary } from "../services/itineraryOpsService";
 import "../css/SearchForm.css";
-
-
-interface ISearchFormProps {}
 
 //created a bunch of state variables to store the users input from the search form
 export function SearchForm() {
   const [results, setResults] = useState<TextSearch>();
   const [title, setTitle] = useState<string>("");
   const [tripDestination, setTripDestination] = useState<string>("");
-  const [radius, setRadius] = useState<number>(50000);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [selectedCompany, setSelectedCompany] = useState<string>("solo");
@@ -28,14 +24,13 @@ export function SearchForm() {
   //the useContext hook is accessing the setDestination function from PlaceContext
   const { setDestination } = useContext(PlaceContext);
   const navigate = useNavigate();
-  const location = useLocation();
 
   //onSubmit will be called when the user submits the search form
   //it calls the fetchTextSearch function from ApiServices, which will take in the
   //destination input and grabs the location and radius and returns results
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const results = await fetchTextSearch(tripDestination, radius);
+    const results = await fetchTextSearch(tripDestination, 50000);
     setResults(results);
   };
 

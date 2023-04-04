@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import PlaceContext from './PlaceContext';
-import { Location, Result } from '../models/textSearch';
+import { Result } from '../models/textSearch';
 import { PlaceContextModel } from '../models/PlaceContextModel';
 
 export interface IPlaceProviderProps {

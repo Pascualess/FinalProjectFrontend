@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import React, {  useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import { Itinerary } from "../models/itinerary";
 import { deleteItinerary, fetchItineraries } from "../services/itineraryOpsService";
 import Navbar from "./Navbar";
@@ -18,10 +18,6 @@ export function ItinerariesPage(props: ItinerariesPageProps) {
 
   function loadItineraries() {
     fetchItineraries().then(setItineraries);
-  }
-
-  function test() {
-    console.log(itineraries);
   }
 
   function handleViewButton(x:Itinerary) {
